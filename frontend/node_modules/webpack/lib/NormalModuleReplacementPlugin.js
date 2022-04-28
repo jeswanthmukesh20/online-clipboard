@@ -3,38 +3,69 @@
 	Author Tobias Koppers @sokra
 */
 
-var path = require("path");
+"use strict";
 
-function NormalModuleReplacementPlugin(resourceRegExp, newResource) {
-	this.resourceRegExp = resourceRegExp;
-	this.newResource = newResource;
+const { join, dirname } = require("./util/fs");
+
+/** @typedef {import("./Compiler")} Compiler */
+/** @typedef {function(TODO): void} ModuleReplacer */
+
+class NormalModuleReplacementPlugin {
+	/**
+	 * Create an instance of the plugin
+	 * @param {RegExp} resourceRegExp the resource matcher
+	 * @param {string|ModuleReplacer} newResource the resource replacement
+	 */
+	constructor(resourceRegExp, newResource) {
+		this.resourceRegExp = resourceRegExp;
+		this.newResource = newResource;
+	}
+
+	/**
+	 * Apply the plugin
+	 * @param {Compiler} compiler the compiler instance
+	 * @returns {void}
+	 */
+	apply(compiler) {
+		const resourceRegExp = this.resourceRegExp;
+		const newResource = this.newResource;
+		compiler.hooks.normalModuleFactory.tap(
+			"NormalModuleReplacementPlugin",
+			nmf => {
+				nmf.hooks.beforeResolve.tap("NormalModuleReplacementPlugin", result => {
+					if (resourceRegExp.test(result.request)) {
+						if (typeof newResource === "function") {
+							newResource(result);
+						} else {
+							result.request = newResource;
+						}
+					}
+				});
+				nmf.hooks.afterResolve.tap("NormalModuleReplacementPlugin", result => {
+					const createData = result.createData;
+					if (resourceRegExp.test(createData.resource)) {
+						if (typeof newResource === "function") {
+							newResource(result);
+						} else {
+							const fs = compiler.inputFileSystem;
+							if (
+								newResource.startsWith("/") ||
+								(newResource.length > 1 && newResource[1] === ":")
+							) {
+								createData.resource = newResource;
+							} else {
+								createData.resource = join(
+									fs,
+									dirname(fs, createData.resource),
+									newResource
+								);
+							}
+						}
+					}
+				});
+			}
+		);
+	}
 }
+
 module.exports = NormalModuleReplacementPlugin;
-NormalModuleReplacementPlugin.prototype.apply = function(compiler) {
-	var resourceRegExp = this.resourceRegExp;
-	var newResource = this.newResource;
-	compiler.plugin("normal-module-factory", function(nmf) {
-		nmf.plugin("before-resolve", function(result, callback) {
-			if(!result) return callback();
-			if(resourceRegExp.test(result.request)) {
-				if(typeof newResource === "function") {
-					newResource(result);
-				} else {
-					result.request = newResource;
-				}
-			}
-			return callback(null, result);
-		});
-		nmf.plugin("after-resolve", function(result, callback) {
-			if(!result) return callback();
-			if(resourceRegExp.test(result.resource)) {
-				if(typeof newResource === "function") {
-					newResource(result);
-				} else {
-					result.resource = path.resolve(path.dirname(result.resource), newResource);
-				}
-			}
-			return callback(null, result);
-		});
-	});
-};

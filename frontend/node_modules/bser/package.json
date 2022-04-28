@@ -1,6 +1,6 @@
 {
   "name": "bser",
-  "version": "1.0.2",
+  "version": "2.1.1",
   "description": "JavaScript implementation of the BSER Binary Serialization",
   "main": "index.js",
   "directories": {
@@ -9,6 +9,9 @@
   "scripts": {
     "test": "node test/bser.js"
   },
+  "files": [
+    "index.js"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/facebook/watchman"
