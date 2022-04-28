@@ -36,15 +36,40 @@ class App extends Component {
     super(props)
     this.state = {
       id: null,
-      value: null
+      value: null, 
+      resp: null
+    }
+  }
+
+  handleSearch = (e) => {
+    if(e.key === 'Enter'){
+      axios.post("http://localhost:2222/retrive", {
+        retrive_id: e.target.value
+      }).then(res => {
+        if(res.data.msg === "success"){
+          this.setState({
+            resp: res.data.data
+            
+          })
+        }else{
+          this.setState({
+            resp: "Invalid retrive id"
+            
+          })
+        }
+        
+      }).catch(error => {
+        console.log(error)
+      })
     }
   }
   handleSubmit = (e) => {
-    axios.post("localhost:8000/paste", {
-      data: e.target.value
+    axios.post("http://localhost:2222/paste", {data: this.state.value}, {
+      "accept": "application/json",
+      "Content-type": "application/json"
     }).then((response) => {
         this.setState({
-          id: response.id
+          id: response.data.id
         })
     }).catch((error) => {
       console.log(error);
@@ -91,7 +116,7 @@ class App extends Component {
             marginTop="10px"
           >
             {(this.state.id !== null) ? <div>Your Retrive ID: {this.state.id} </div>: <div></div>}
-            {(this.state.value !== null) ? <div>Your text: {this.state.value} </div>: <div></div>}
+            {/* {(this.state.value !== null) ? <div>Your text: {this.state.value} </div>: <div></div>} */}
 
           </Box>
         </Container>
@@ -109,9 +134,14 @@ class App extends Component {
                 children={<Search2Icon color='gray.300' />}/>
             <Input
                 placeholder="Enter your retrive code..."
-                onKeyPress={console.log("enter")}
+                onKeyPress={this.handleSearch}
             />
           </InputGroup>
+          <Box 
+          marginTop="10px"
+          >
+            {(this.state.resp !== null) ? <div>Your text: {this.state.resp} </div>: <div></div>}
+          </Box>
         </Container>
       </div>
     );
