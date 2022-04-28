@@ -12,6 +12,7 @@ import {
 } from '@chakra-ui/react';
 import Navbar from './components/Navbar.js';
 import { Search2Icon } from "@chakra-ui/icons";
+const axios = require("axios");
 
 
 // const ToastContext = React.createContext(() => {});
@@ -37,6 +38,17 @@ class App extends Component {
       id: null,
       value: null
     }
+  }
+  handleSubmit = (e) => {
+    axios.post("localhost:8000/paste", {
+      data: e.target.value
+    }).then((response) => {
+        this.setState({
+          id: response.id
+        })
+    }).catch((error) => {
+      console.log(error);
+    })
   }
   render() {
     return (
@@ -68,7 +80,7 @@ class App extends Component {
               bg="#56A6DC"
               width='100%'
               marginTop="15px"
-              onClick={() => this.setState({id: 1224})}
+              onClick={this.handleSubmit}
           >
             Save to Clipboard
           </Button>
