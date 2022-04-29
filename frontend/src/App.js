@@ -133,7 +133,7 @@ class App extends Component {
                 pointerEvents='none'
                 children={<Search2Icon color='gray.300' />}/>
             <Input
-                placeholder="Enter your retrive code..."
+                placeholder="Enter your retrive ID..."
                 onKeyPress={this.handleSearch}
             />
           </InputGroup>
