@@ -15,13 +15,11 @@ import { Search2Icon } from "@chakra-ui/icons";
 const axios = require("axios");
 
 
-// const ToastContext = React.createContext(() => {});
-// function ToastProvider({ children }) {
-//   const toast = useToast();
-//   return (
-//       <ToastContext.Provider value={toast}>{children}</ToastContext.Provider>
-//   );
-// }
+const ToastContext = React.createContext(() => {});
+
+// create provider
+
+
 const breakpoints = {
   base: "90%",
   sm: '90%',
@@ -29,6 +27,29 @@ const breakpoints = {
   lg: '70%',
   xl: '70%',
   '2xl': '70%',
+}
+
+function Toast(props) {
+  const toast = useToast()
+  return (
+    <Button
+      marginTop="25px"
+      marginBottom="25px"
+      marginLeft={props.ml}
+      onClick={() =>
+        {toast({
+          title: props.title,
+          description: props.description,
+          status: props.status,
+          duration: props.duration,
+          isClosable: props.closable,
+        })
+        navigator.clipboard.writeText(props.data)}
+      }
+    >
+      Copy
+    </Button>
+  )
 }
 
 class App extends Component {
@@ -91,14 +112,12 @@ class App extends Component {
              placeholder="Paste your text here"
              colorScheme="white"
              color="black"
-             font
              size="lg"
+             height="200px"
              focusBorderColor="black"
              onChange={(e) => {this.setState({value: e.target.value})}}
              />
           <Tooltip label="click to submit" placement="bottom">
-          {/*<ToastContext.consumer>*/}
-          {/*  {toast => (*/}
                 <Button
               variant="solid"
               colorScheme="white"
@@ -112,13 +131,19 @@ class App extends Component {
           {/*  )}*/}
           {/*</ToastContext.consumer>*/}
           </Tooltip>
-          <Box
+          
+            {(this.state.id !== null) ? <Box
             marginTop="10px"
-          >
-            {(this.state.id !== null) ? <div>Your Retrive ID: {this.state.id} </div>: <div></div>}
-            {/* {(this.state.value !== null) ? <div>Your text: {this.state.value} </div>: <div></div>} */}
-
-          </Box>
+          >Your Retrive ID: {this.state.id}<Toast 
+          data={this.state.id}
+          title='Copied to Clipboard.' 
+          description="Retrive ID copied to Clipboard." 
+          status='success'
+          duration={1500}
+          closable={true}
+          ml="50px"
+         /> </Box>: <div></div>}
+          
         </Container>
         <Container
             maxW={breakpoints}
@@ -137,11 +162,26 @@ class App extends Component {
                 onKeyPress={this.handleSearch}
             />
           </InputGroup>
+          {/* {(this.state.resp !== null) ? <div>Your text: {this.state.resp} </div>: <div></div>} */}
+          {(this.state.resp !== null) ? <>
+          <Toast 
+            data={this.state.resp} 
+            title='Copied to Clipboard.' 
+            description="Text copied to you clipboard." 
+            status='success'
+            duration={1500}
+            closable={true}
+            />
           <Box 
-          marginTop="10px"
+            marginTop="10px"
+            borderWidth='1px' borderRadius='lg'
+            minH="100px"
+            display='flex'
+            paddingTop="20px"
+            paddingLeft="10px"
           >
-            {(this.state.resp !== null) ? <div>Your text: {this.state.resp} </div>: <div></div>}
-          </Box>
+            {this.state.resp} 
+          </Box></>: <div></div>}
         </Container>
       </div>
     );
