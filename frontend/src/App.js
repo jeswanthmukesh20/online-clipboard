@@ -51,7 +51,7 @@ function Toast(props) {
         navigator.clipboard.writeText(props.data)}
       }
     >
-      Copy
+      {props.text}
     </Button>
   )
 }
@@ -103,7 +103,7 @@ class App extends Component {
 
   handleSearch = (e) => {
     if(e.key === 'Enter'){
-      axios.post("http://localhost:2222/retrive", {
+      axios.post("https://onclip.herokuapp.com/retrive", {
         retrive_id: e.target.value
       }).then(res => {
         if(res.data.msg === "success"){
@@ -127,7 +127,7 @@ class App extends Component {
     if(this.state.value != "" && this.state.value != null && this.state.subFailed === false){
       console.log(`value: ${this.state.value}`)
 
-      axios.post("http://localhost:2222/paste", {
+      axios.post("https://onclip.herokuapp.com/paste", {
         data: this.state.value
       }, 
       {
@@ -201,10 +201,10 @@ class App extends Component {
               status={(!this.state.subFailed)? "success": "error"}
               duration={1500}
               closable={true}
-
+              text="Save to Clipboard"
 
           >
-            Save to Clipboard
+           
           </Toast>
           </Tooltip>
           
