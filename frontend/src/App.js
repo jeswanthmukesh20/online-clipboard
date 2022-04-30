@@ -17,8 +17,6 @@ const axios = require("axios");
 
 const ToastContext = React.createContext(() => {});
 
-// create provider
-
 
 const breakpoints = {
   base: "90%",
@@ -33,11 +31,17 @@ function Toast(props) {
   const toast = useToast()
   return (
     <Button
-      marginTop="25px"
-      marginBottom="25px"
+      variant={props.variant}
+      colorScheme={props.colorScheme}
+      bg={props.bg}
+      width={props.width}
+      marginBottom={props.marginBottom}
+      marginTop={props.marginTop}
       marginLeft={props.ml}
       onClick={() =>
-        {toast({
+        {
+          props.submit();
+          toast({
           title: props.title,
           description: props.description,
           status: props.status,
@@ -52,13 +56,48 @@ function Toast(props) {
   )
 }
 
+function ToastBox(props){
+  const toast = useToast()
+  return (
+    <Box
+      marginTop={props.mt}
+      ml={props.ml}
+      borderWidth={props.bw} 
+      borderRadius={props.br}
+      minH={props.minH}
+      display={props.display}
+      paddingTop={props.pt}
+      paddingLeft={props.pl}
+      as="button"
+      width={props.width}
+      fontWeight={props.fontWeight}
+      onClick={() => {
+        
+        toast({
+          title: props.title,
+          description: props.description,
+          status: props.status,
+          duration: props.duration,
+          isClosable: props.closable,
+        })
+        navigator.clipboard.writeText(props.data)
+      }
+      }
+    >
+      {props.data}
+    </Box>
+  )
+}
+
 class App extends Component {
   constructor(props){
     super(props)
     this.state = {
       id: null,
       value: null, 
-      resp: null
+      resp: null,
+      error:false,
+      subFailed: true
     }
   }
 
@@ -85,16 +124,29 @@ class App extends Component {
     }
   }
   handleSubmit = (e) => {
-    axios.post("http://localhost:2222/paste", {data: this.state.value}, {
-      "accept": "application/json",
-      "Content-type": "application/json"
-    }).then((response) => {
+    if(this.state.value != "" && this.state.value != null && this.state.subFailed === false){
+      console.log(`value: ${this.state.value}`)
+
+      axios.post("http://localhost:2222/paste", {
+        data: this.state.value
+      }, 
+      {
+        "accept": "application/json",
+        "Content-type": "application/json"
+      }).then((response) => {
+          this.setState({
+            id: response.data.id,
+            subFailed: false
+          })
+      }).catch((error) => {
+        console.log(error);
+      })
+    }else{
         this.setState({
-          id: response.data.id
+          error: true,
+          subFailed: true
         })
-    }).catch((error) => {
-      console.log(error);
-    })
+      }
   }
   render() {
     return (
@@ -112,37 +164,61 @@ class App extends Component {
              placeholder="Paste your text here"
              colorScheme="white"
              color="black"
+             errorBorderColor="red.300"
+             isInvalid={this.state.error}
              size="lg"
              height="200px"
-             focusBorderColor="black"
-             onChange={(e) => {this.setState({value: e.target.value})}}
+             
+             onChange={(e) => {
+               if(e.target.value !==""){
+                 this.setState({
+                   value: e.target.value,
+                   error: false,
+                   subFailed: false
+                  })
+
+                }else if(e.target.value !=="" && this.state.error === true){
+                 this.setState({error:false,
+                subFailed: false})
+               }else{
+                 this.setState({
+                   error:true,
+                   subFailed: true
+                 })
+               }
+              }}
              />
           <Tooltip label="click to submit" placement="bottom">
-                <Button
+                <Toast
               variant="solid"
               colorScheme="white"
               bg="#56A6DC"
               width='100%'
               marginTop="15px"
-              onClick={this.handleSubmit}
+              submit={this.handleSubmit}
+              title={(!this.state.subFailed)? "Created Successfully": "Invalid input"}
+              description={(!this.state.subFailed)? "clipboard created successfully": "clipboard should not be empty"}
+              status={(!this.state.subFailed)? "success": "error"}
+              duration={1500}
+              closable={true}
+
+
           >
             Save to Clipboard
-          </Button>
-          {/*  )}*/}
-          {/*</ToastContext.consumer>*/}
+          </Toast>
           </Tooltip>
           
-            {(this.state.id !== null) ? <Box
-            marginTop="10px"
-          >Your Retrive ID: {this.state.id}<Toast 
-          data={this.state.id}
-          title='Copied to Clipboard.' 
-          description="Retrive ID copied to Clipboard." 
-          status='success'
-          duration={1500}
-          closable={true}
-          ml="50px"
-         /> </Box>: <div></div>}
+            {(this.state.id !== null) ? <Tooltip shouldWrapChildren label="click to copy" placement="bottom">
+            Your Retrive ID: <ToastBox
+            data={this.state.id}
+            title='Copied to Clipboard.' 
+            description="Retrive ID copied to Clipboard." 
+            status='success'
+            duration={1500}
+            closable={true}
+            mt="10px"
+            fontWeight='semibold'
+         /> </Tooltip>: <div></div>}
           
         </Container>
         <Container
@@ -162,26 +238,26 @@ class App extends Component {
                 onKeyPress={this.handleSearch}
             />
           </InputGroup>
-          {/* {(this.state.resp !== null) ? <div>Your text: {this.state.resp} </div>: <div></div>} */}
           {(this.state.resp !== null) ? <>
-          <Toast 
-            data={this.state.resp} 
-            title='Copied to Clipboard.' 
-            description="Text copied to you clipboard." 
-            status='success'
-            duration={1500}
-            closable={true}
+            <Tooltip label="click to copy" shouldWrapChildren placement="auto">
+            <ToastBox 
+              mt="10px" 
+              bw="1px" 
+              br="lg" 
+              width="100%"
+              minH="100px" 
+              display="flex" 
+              pt="20px" 
+              pl="10px"
+              data={this.state.resp} 
+              title='Copied to Clipboard.' 
+              description="Text copied to you clipboard." 
+              status='success'
+              duration={1500}
+              closable={true}
             />
-          <Box 
-            marginTop="10px"
-            borderWidth='1px' borderRadius='lg'
-            minH="100px"
-            display='flex'
-            paddingTop="20px"
-            paddingLeft="10px"
-          >
-            {this.state.resp} 
-          </Box></>: <div></div>}
+            </Tooltip>
+          </>: <div></div>}
         </Container>
       </div>
     );
