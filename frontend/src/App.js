@@ -8,14 +8,12 @@ import {
   InputRightElement,
   InputGroup,
   useToast,
-    Box
+  Box,
+  Text
 } from '@chakra-ui/react';
 import Navbar from './components/Navbar.js';
-import { Search2Icon } from "@chakra-ui/icons";
+import { Search2Icon, CopyIcon } from "@chakra-ui/icons";
 const axios = require("axios");
-
-
-const ToastContext = React.createContext(() => {});
 
 
 const breakpoints = {
@@ -38,9 +36,12 @@ function Toast(props) {
       marginBottom={props.marginBottom}
       marginTop={props.marginTop}
       marginLeft={props.ml}
+      isLoading={props.isLoading}
+      loadingText='Sending...'
       onClick={() =>
         {
           props.submit();
+          if(props.data != null && props.data != "" || props.data != undefined){
           toast({
           title: props.title,
           description: props.description,
@@ -48,27 +49,29 @@ function Toast(props) {
           duration: props.duration,
           isClosable: props.closable,
         })
-        navigator.clipboard.writeText(props.data)}
+        navigator.clipboard.writeText(props.data)}}
       }
     >
-      {props.text}
+      {props.text} 
     </Button>
   )
 }
+
+
 
 function ToastBox(props){
   const toast = useToast()
   return (
     <Box
       marginTop={props.mt}
+      marginBottom={props.mb}
       ml={props.ml}
-      borderWidth={props.bw} 
-      borderRadius={props.br}
       minH={props.minH}
       display={props.display}
       paddingTop={props.pt}
       paddingLeft={props.pl}
       as="button"
+      alignItems="center"
       width={props.width}
       fontWeight={props.fontWeight}
       onClick={() => {
@@ -84,7 +87,7 @@ function ToastBox(props){
       }
       }
     >
-      {props.data}
+      {(props.textarea) ? <Textarea isReadonly={true} variant="filled" focusBorderColor="gray.300" height="200px" value={props.data}/> : props.data }
     </Box>
   )
 }
@@ -97,7 +100,8 @@ class App extends Component {
       value: null, 
       resp: null,
       error:false,
-      subFailed: true
+      subFailed: true,
+      loading: false
     }
   }
 
@@ -108,13 +112,11 @@ class App extends Component {
       }).then(res => {
         if(res.data.msg === "success"){
           this.setState({
-            resp: res.data.data
-            
+            resp: res.data.data,
           })
         }else{
           this.setState({
-            resp: "Invalid retrive id"
-            
+            resp: "Invalid retrive id",
           })
         }
         
@@ -125,8 +127,8 @@ class App extends Component {
   }
   handleSubmit = (e) => {
     if(this.state.value != "" && this.state.value != null && this.state.subFailed === false){
-      console.log(`value: ${this.state.value}`)
-
+      console.log(`value: ${this.state.value} loading on`)
+      this.setState({loading: true})
       axios.post("https://onclip.herokuapp.com/paste", {
         data: this.state.value
       }, 
@@ -136,7 +138,8 @@ class App extends Component {
       }).then((response) => {
           this.setState({
             id: response.data.id,
-            subFailed: false
+            subFailed: false,
+            loading: false
           })
       }).catch((error) => {
         console.log(error);
@@ -168,7 +171,6 @@ class App extends Component {
              isInvalid={this.state.error}
              size="lg"
              height="200px"
-             
              onChange={(e) => {
                if(e.target.value !==""){
                  this.setState({
@@ -176,7 +178,6 @@ class App extends Component {
                    error: false,
                    subFailed: false
                   })
-
                 }else if(e.target.value !=="" && this.state.error === true){
                  this.setState({error:false,
                 subFailed: false})
@@ -202,13 +203,11 @@ class App extends Component {
               duration={1500}
               closable={true}
               text="Save to Clipboard"
-
-          >
-           
-          </Toast>
+              isLoading={this.state.loading}
+          />
           </Tooltip>
           
-            {(this.state.id !== null) ? <Tooltip shouldWrapChildren label="click to copy" placement="bottom">
+            {(this.state.id !== null) ? <><Tooltip shouldWrapChildren label="click to copy" placement="bottom">
             Your Retrive ID: <ToastBox
             data={this.state.id}
             title='Copied to Clipboard.' 
@@ -218,7 +217,8 @@ class App extends Component {
             closable={true}
             mt="10px"
             fontWeight='semibold'
-         /> </Tooltip>: <div></div>}
+         /> </Tooltip> 
+         </>: <div></div>}
           
         </Container>
         <Container
@@ -241,7 +241,8 @@ class App extends Component {
           {(this.state.resp !== null) ? <>
             <Tooltip label="click to copy" shouldWrapChildren placement="auto">
             <ToastBox 
-              mt="10px" 
+              mt="10px"
+              mg="30px" 
               bw="1px" 
               br="lg" 
               width="100%"
@@ -255,6 +256,7 @@ class App extends Component {
               status='success'
               duration={1500}
               closable={true}
+              textarea={true}
             />
             </Tooltip>
           </>: <div></div>}

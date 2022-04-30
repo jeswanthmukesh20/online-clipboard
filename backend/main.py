@@ -33,7 +33,7 @@ async def paste(data: dict) -> dict:
     ret_id = 0
     resp = await retrive_id.find_one({"retrive_id": "ret_id"})
     while True:
-        ret_id = random.randint(100000, 999999)
+        ret_id = random.randint(1000, 9999)
         if resp is None:
             break
         if resp["retrive_id"] == ret_id:
