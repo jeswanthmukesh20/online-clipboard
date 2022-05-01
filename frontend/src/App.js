@@ -9,7 +9,8 @@ import {
   InputGroup,
   useToast,
   Box,
-  Text
+  Text,
+  SkeletonText
 } from '@chakra-ui/react';
 import Navbar from './components/Navbar.js';
 import { Search2Icon, CopyIcon } from "@chakra-ui/icons";
@@ -41,7 +42,7 @@ function Toast(props) {
       onClick={() =>
         {
           props.submit();
-          if(props.data != null && props.data != "" || props.data != undefined){
+          // if(props.data != null && props.data != "" || props.data != undefined){
           toast({
           title: props.title,
           description: props.description,
@@ -49,7 +50,7 @@ function Toast(props) {
           duration: props.duration,
           isClosable: props.closable,
         })
-        navigator.clipboard.writeText(props.data)}}
+        navigator.clipboard.writeText(props.data)}
       }
     >
       {props.text} 
@@ -101,27 +102,34 @@ class App extends Component {
       resp: null,
       error:false,
       subFailed: true,
-      loading: false
+      loading: false,
+      started: null
     }
   }
 
   handleSearch = (e) => {
     if(e.key === 'Enter'){
+      this.setState({
+        started: true
+      })
       axios.post("https://onclip.herokuapp.com/retrive", {
         retrive_id: e.target.value
       }).then(res => {
         if(res.data.msg === "success"){
           this.setState({
             resp: res.data.data,
+            started: false
           })
         }else{
           this.setState({
             resp: "Invalid retrive id",
+            started: false
           })
         }
         
       }).catch(error => {
         console.log(error)
+        this.setState({started: false})
       })
     }
   }
@@ -238,7 +246,7 @@ class App extends Component {
                 onKeyPress={this.handleSearch}
             />
           </InputGroup>
-          {(this.state.resp !== null) ? <>
+          {(this.state.started) ? <SkeletonText mt='4' noOfLines={4} spacing='4' />: (this.state.resp !== null) ? <>
             <Tooltip label="click to copy" shouldWrapChildren placement="auto">
             <ToastBox 
               mt="10px"

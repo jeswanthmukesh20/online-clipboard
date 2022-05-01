@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
+import {Route, Link, BrowserRouter as Router } from 'react-router-dom';
 import { extendTheme, ChakraProvider} from '@chakra-ui/react';
 import {mode} from "@chakra-ui/theme-tools";
 
@@ -29,11 +30,16 @@ const theme = extendTheme({ styles: {
 function Final() {
   return (
     <ChakraProvider initialColorMode={config.initialColorMode} theme={theme}>
-      <App />
+      <App/>  
     </ChakraProvider>
   )
 }
 
+// const route = (
+//   <Router>
+//       <Route path="/" component={Final}/>
+//   <Router>
+// )
 
 ReactDOM.render(
 
