@@ -26,10 +26,10 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
+    - run: pwd
     - run: cd /frontend && npm ci
     - run: cd /frontend && npm run build --if-present
     - run: cd /frontend && npm test
-    - run: pwd
     
   build_and_deploy:
     runs-on: ubuntu-latest
