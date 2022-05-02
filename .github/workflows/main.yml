@@ -11,13 +11,13 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v2.3.2
       - name: Install Dependencies
-        run: cd /frontend && npm install
+        run: npm install
       - name: Run Tests
         env:
           CI: true
-        run: cd /frontend && npm test
+        run: npm test
       - name: Build
-        run: cd /frontend && npm run build
+        run:  npm run build
       - name: Archive Production Artifact
         uses: actions/upload-artifact@v2
         with:
