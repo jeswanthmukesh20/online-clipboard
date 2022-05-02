@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import React, { Component, useState, useRef } from 'react';
 import {
   Button,
   Tooltip,
@@ -24,6 +24,18 @@ const breakpoints = {
   lg: '70%',
   xl: '70%',
   '2xl': '70%',
+}
+
+function CreatedToast(props){
+  const toast = useToast()
+  const toastIdRef = useRef()
+  toastIdRef.current = toast({
+    title: props.title,
+    description: props.description,
+    status: props.status,
+    duration: props.duration,
+    isClosable: props.closable,
+  })
 }
 
 function Toast(props) {
@@ -227,7 +239,13 @@ class App extends Component {
             fontWeight='semibold'
          /> </Tooltip> 
          </>: <div></div>}
-          
+          {this.state.resp ? <CreatedToast
+          title='Created successfully.' 
+          description="Text saved to clipboard successfully." 
+          status='success'
+          duration={1500}
+          closable={true}
+          textarea={true}/>: <div></div>}
         </Container>
         <Container
             maxW={breakpoints}
