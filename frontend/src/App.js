@@ -54,14 +54,14 @@ function Toast(props) {
       onClick={() =>
         {
           props.submit();
-          // if(props.data != null && props.data != "" || props.data != undefined){
+          if(props.data != null && props.data != "" || props.data != undefined){
           toast({
           title: props.title,
           description: props.description,
           status: props.status,
           duration: props.duration,
           isClosable: props.closable,
-        })
+        })}
         navigator.clipboard.writeText(props.data)}
       }
     >
@@ -239,22 +239,23 @@ class App extends Component {
             fontWeight='semibold'
          /> </Tooltip> 
          </>: <div></div>}
-          {this.state.resp ? <CreatedToast
+          {/* {this.state.id ? <CreatedToast
           title='Created successfully.' 
           description="Text saved to clipboard successfully." 
           status='success'
           duration={1500}
           closable={true}
-          textarea={true}/>: <div></div>}
+          textarea={true}/>: <div></div>} */}
         </Container>
         <Container
-            maxW={breakpoints}
-            maxH={breakpoints}
-            bg="white" style={{
-          marginTop: "60px",
-          borderRadius: "10px",
-          padding: "20px",
-        }}>
+          maxW={breakpoints}
+          maxH={breakpoints}
+          bg="white" style={{
+            marginTop: "60px",
+            borderRadius: "10px",
+            padding: "20px",
+          }}
+        >
           <InputGroup size="lg">
             <InputRightElement
                 pointerEvents='none'
