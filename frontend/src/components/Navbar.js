@@ -18,7 +18,7 @@ class NavBar extends Component {
                 backgroundColor: "#14202A",
             }}>
                 <div className="container-fluid">
-                    <div className="navbar-brand">Clipboard</div>
+                    <div className="navbar-brand">CopyTxt</div>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><HamburgerIcon/></button>
                     <div class="collapse navbar-collapse " id="navbarNav">
                         <ul class="navbar-nav">
