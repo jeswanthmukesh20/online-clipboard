@@ -49,5 +49,5 @@ jobs:
           args: deploy --only hosting
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-          # PROJECT_DIR: ./frontend
+          PROJECT_DIR: ./frontend
           # PROJECT_PATH: "$GITHUB_WORKSPACE/frontend"
