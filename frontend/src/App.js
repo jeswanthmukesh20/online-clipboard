@@ -178,7 +178,7 @@ class App extends Component {
       <div className="App">
         <Helmet>
           <title>CopyTxt Online - The Online Clipboard - Copy your text online and share it with anyone</title>
-          <meta name="description" content=""/>
+          <meta name="description" content="Copytxt.online is a free online clipboard. You can save your text to the cloud and retrive it from any device. "/>
         </Helmet>
         <Navbar />
         <Container
