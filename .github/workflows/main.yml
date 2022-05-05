@@ -29,17 +29,20 @@ jobs:
   deploy:
     name: Deploy
     needs: build
+    # on:
+    #   push:
+    #     branches:
+    #       - main
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v2.3.2
-      - name: Download Artifact
-        uses: actions/download-artifact@v2
-        with:
-          name: build
-          path: build
-      - name: Deploy to Firebase
-        uses: w9jds/firebase-action@master
+      - uses: actions/checkout@master
+      - uses: actions/setup-node@master
+        
+      - run: npm install
+        working-directory: frontend
+      - run: npm run build:prod
+        working-directory: frontend
+      - uses: w9jds/firebase-action@master
         with:
           args: deploy --only hosting
         env:
