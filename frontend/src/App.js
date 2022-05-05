@@ -15,6 +15,7 @@ import {
 import Navbar from './components/Navbar.js';
 import { Search2Icon, CopyIcon } from "@chakra-ui/icons";
 const axios = require("axios");
+import {Helmet} from "react-helmet";
 
 
 const breakpoints = {
@@ -145,6 +146,7 @@ class App extends Component {
       })
     }
   }
+  
   handleSubmit = (e) => {
     if(this.state.value != "" && this.state.value != null && this.state.subFailed === false){
       console.log(`value: ${this.state.value} loading on`)
@@ -174,6 +176,10 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <Helmet>
+          <title>CopyTxt Online - The Online Clipboard - Copy your text online and share it with anyone</title>
+          <meta name="description" content=""/>
+        </Helmet>
         <Navbar />
         <Container
         maxW={breakpoints}
