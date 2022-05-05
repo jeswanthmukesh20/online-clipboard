@@ -16,6 +16,7 @@ import Navbar from './components/Navbar.js';
 import { Search2Icon, CopyIcon } from "@chakra-ui/icons";
 const axios = require("axios");
 import {Helmet} from "react-helmet";
+import favicon from "./favicon.png"
 
 
 const breakpoints = {
@@ -182,6 +183,7 @@ class App extends Component {
           <meta name="keywords" content='online clipboard, copy text online, share text online, store txt online, share text in cloud, copy online, copy paste online, save online, share links online, save links online'/>
           <meta name="author" content="Copytxt.online"/>
           <meta name="robots" content="index, follow"/>
+          <link rel="icon" type="image/png" href={favicon}/>
           {/* <meta name="revisit-after" content="1 days"/> */}
           <meta name="language" content="English"/>
           <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
