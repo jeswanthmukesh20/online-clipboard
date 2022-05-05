@@ -42,11 +42,12 @@ jobs:
         working-directory: frontend
       - run: npm run build
         working-directory: frontend
-      - name: Set project dir environment var
-        run: echo ::set-env name=PROJECT_DIR::"$GITHUB_WORKSPACE/frontend"
+      # - name: Set project dir environment var
+      #   run: echo ::set-env name=PROJECT_DIR::"$GITHUB_WORKSPACE/frontend"
       - uses: w9jds/firebase-action@master
         with:
           args: deploy --only hosting
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-          PROJECT_DIR: ./frontend
+          # PROJECT_DIR: ./frontend
+          PROJECT_PATH: "$GITHUB_WORKSPACE/frontend"
