@@ -16,7 +16,7 @@ jobs:
       - name: Run Tests
         env:
           CI: true
-        run: npm test
+        run: npm test --passWithNoTests
         working-directory: frontend
       - name: Build
         run:  npm run build
