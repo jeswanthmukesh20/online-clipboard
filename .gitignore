@@ -1,5 +1,5 @@
 node_modules/
 __pycache__/
 .firebaserc
-/.firebase/
-/.idea/
+.firebase/
+.idea/
