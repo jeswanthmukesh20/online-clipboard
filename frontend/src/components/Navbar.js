@@ -29,7 +29,7 @@ class NavBar extends Component {
                                 <a class="nav-link" href="#">About</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Contact us</a>
+                                <a class="nav-link" href="#">Contact Us</a>
                             </li>
                         </ul>
                     </div>
