@@ -50,4 +50,4 @@ jobs:
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
           # PROJECT_DIR: ./frontend
-          PROJECT_PATH: "$GITHUB_WORKSPACE/frontend"
+          # PROJECT_PATH: "$GITHUB_WORKSPACE/frontend"
