@@ -77,12 +77,18 @@ function Final() {
 //     </div>
 //   )
 // }
-
-const Contact = () => {
+const Cnt = () => {
   return (
     <div>
-      <h1>Contact</h1>
+      <h1>Contact page</h1>
     </div>
+  )
+}
+const Contact = () => {
+  return (
+    <>
+      <Sidebar children={<Cnt/>}/>
+    </>
   )
 }
 
