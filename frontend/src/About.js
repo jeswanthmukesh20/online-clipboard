@@ -7,7 +7,8 @@ import {
     Text,
     Avatar,
     Stack,
-    Icon
+    Icon,
+    LinkOverlay
 } from "@chakra-ui/react";
 import { motion } from 'framer-motion';
 import {
@@ -55,12 +56,25 @@ export default class About extends Component{
                         marginBottom="25px"
                     >About CopyTxT</Heading>
                     <Box>
-                        <Text padding="5px">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam volutpat volutpat viverra. Ut congue enim eget eros consequat, id fermentum massa pellentesque. Etiam tristique dui vel massa condimentum aliquet. In vitae malesuada sapien. Maecenas et lectus sit amet dolor molestie porttitor dapibus eu neque. Phasellus vitae tortor in lectus ullamcorper porta dictum varius urna. Quisque erat lorem, eleifend id nisi ac, sodales cursus massa. Fusce eu placerat lectus, eget tincidunt diam. Curabitur fermentum sagittis sapien, a lobortis mi ornare sed. Curabitur faucibus eget metus tincidunt lobortis. Curabitur fringilla tempor lectus eget maximus.
+                        <Text padding="10px">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam volutpat volutpat viverra. 
+                            Ut congue enim eget eros consequat, id fermentum massa pellentesque. 
+                            Etiam tristique dui vel massa condimentum aliquet. In vitae malesuada sapien. 
+                            Maecenas et lectus sit amet dolor molestie porttitor dapibus eu neque. 
+                            Phasellus vitae tortor in lectus ullamcorper porta dictum varius urna. 
+                            Quisque erat lorem, eleifend id nisi ac, sodales cursus massa. 
+                            Fusce eu placerat lectus, eget tincidunt diam. Curabitur fermentum sagittis sapien, a lobortis mi ornare sed. 
+                            Curabitur faucibus eget metus tincidunt lobortis. Curabitur fringilla tempor lectus eget maximus.
                         </Text>
 
-                        <Text padding="5px">
-                            Ut sit amet velit vitae tortor porttitor sollicitudin vitae a nisl. Vivamus est risus, <b>[ VH10703 - JESWANTH MUKESH ]</b> aliquam vitae finibus sed, malesuada ut enim. Maecenas eget arcu faucibus, viverra arcu eget, dictum neque. Aliquam urna libero, aliquam et vulputate vitae, elementum et nisl. Donec eros urna, blandit non arcu ac, faucibus vehicula nisi. Phasellus sodales vulputate augue sed iaculis. Aenean at arcu quis justo scelerisque imperdiet et tristique nibh. Ut malesuada aliquam nulla sed hendrerit. Nullam vel lacus varius magna sodales congue. Praesent rutrum sagittis hendrerit. Pellentesque accumsan velit condimentum enim feugiat tempor. Nunc mattis auctor lectus, porta ultricies erat dignissim sit amet. Aenean hendrerit felis nibh, quis maximus risus vestibulum vitae.
+                        <Text padding="10px">
+                            Ut sit amet velit vitae tortor porttitor sollicitudin vitae a nisl. Vivamus est risus, <b>[ VH10703 - JESWANTH MUKESH ]</b> aliquam vitae finibus sed, 
+                            malesuada ut enim. Maecenas eget arcu faucibus, viverra arcu eget, dictum neque. Aliquam urna libero, aliquam et vulputate vitae, elementum et nisl. 
+                            Donec eros urna, blandit non arcu ac, faucibus vehicula nisi. 
+                            Phasellus sodales vulputate augue sed iaculis. Aenean at arcu quis justo scelerisque imperdiet et tristique nibh. 
+                            Ut malesuada aliquam nulla sed hendrerit. Nullam vel lacus varius magna sodales congue. Praesent rutrum sagittis hendrerit. 
+                            Pellentesque accumsan velit condimentum enim feugiat tempor. Nunc mattis auctor lectus, porta ultricies erat dignissim sit amet. 
+                            Aenean hendrerit felis nibh, quis maximus risus vestibulum vitae.
                         </Text>
                     </Box>
                 </Container>
@@ -107,10 +121,16 @@ export default class About extends Component{
                                 lobortis mi ornare sed. Curabitur faucibus eget metus tincidunt lobortis. Curabitur fringilla tempor lectus eget maximus.
                                 
                             </Text>
-                            <Stack marginTop="10px" direction="row" spacing={2}>
-                                <Icon as={FaGithub}/>
-                                <Icon color="#0077b5" as={FaLinkedinIn}/>
-                                <Icon color="#00acee" as={FaTwitter}/>
+                            <Stack direction="row" spacing={2}>
+                                <a href="https://github.com/jeswanthmukesh20" target="_blank">
+                                    <Icon as={FaGithub}/>
+                                </a>
+                                <a href="https://www.linkedin.com/in/jeswanth-mukesh-a01b82194/" target="_blank">
+                                    <Icon color="#0077b5" as={FaLinkedinIn}/>
+                                </a>
+                                <a href="https://twitter.com/killshot_exe" target="_blank">
+                                    <Icon color="#00acee" as={FaTwitter}/>
+                                </a>
                             </Stack>    
                         </Box>
 
@@ -137,10 +157,16 @@ export default class About extends Component{
                                 lobortis mi ornare sed. Curabitur faucibus eget metus tincidunt lobortis. Curabitur fringilla tempor lectus eget maximus.
                                 
                             </Text>
-                            <Stack marginTop="10px" direction="row" spacing={2}>
-                                <Icon as={FaGithub}/>
-                                <Icon color="#0077b5" as={FaLinkedinIn}/>
-                                <Icon color="#00acee" as={FaTwitter}/>
+                            <Stack  direction="row" spacing={2}>
+                                <a href="https://github.com/ashwin3005" target="_blank">
+                                    <Icon as={FaGithub}/>
+                                </a>
+                                <a href="https://www.linkedin.com/in/" target="_blank">
+                                    <Icon color="#0077b5" as={FaLinkedinIn}/>
+                                </a>
+                                <a href="https://twitter.com/" target="_blank">
+                                    <Icon color="#00acee" as={FaTwitter}/>
+                                </a>
                             </Stack>    
                         </Box>
                     
