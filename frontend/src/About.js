@@ -96,10 +96,10 @@ export default class About extends Component{
                 >
 
                     <Box margin="15px">
-                        <Heading marginTop="10px" marginBottom="25px">Our Team</Heading>
+                        <Heading marginTop="10px" marginBottom="25px" children="<Developers />"/>
 
                         {/* User */}
-                        <SimpleGrid columns={[1, null, 2]} spacing={10}>
+                        <SimpleGrid columns={[1, null, 2]} spacing={4}>
                         <Box as={motion.div} whileHover={{ scale: 1.03, boxShadow: "5px 5px 0 rgba(0, 0, 0, 0.2)" }} maxW="lg"  borderWidth='1px' borderRadius='lg' overflow='hidden' padding="10px">
                             <Stack 
                                 direction='row' 
