@@ -17,8 +17,7 @@ import Navbar from './components/Navbar.js';
 import { Search2Icon, CopyIcon } from "@chakra-ui/icons";
 const axios = require("axios");
 import {Helmet} from "react-helmet";
-import favicon from "./favicon.png"
-
+import favicon from "./favicon.png";
 
 const breakpoints = {
   base: "90%",
@@ -178,7 +177,10 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Helmet>
+        
+        {/* <Navbar />
+         */}
+         <Helmet>
           <title>CopyTxt Online - The Online Clipboard - Copy your text online and share it with anyone</title>
           <meta name="description" content="Copytxt.online is a free online clipboard. You can save your text to the cloud and retrive it from any device. "/>
           <meta name="keywords" content='online clipboard, copy text online, share text online, store txt online, share text in cloud, copy online, copy paste online, save online, share links online, save links online'/>
@@ -200,8 +202,6 @@ class App extends Component {
           <meta name="msapplication-TileImage" content="https://onclip.herokuapp.com/favicon/ms-icon-144x144.png"/> */}
           {/* <meta name="theme-color" content="#56a6dc"/> */}
         </Helmet>
-        {/* <Navbar />
-         */}
          
         <Container
         maxW={breakpoints}

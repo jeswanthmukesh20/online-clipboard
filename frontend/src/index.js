@@ -7,6 +7,7 @@ import {mode} from "@chakra-ui/theme-tools";
 import Abt from './About';
 import Sidebar from './components/Sidebar';
 
+
 const colors = {
   primary: {
     ligth: "#ffffff",
