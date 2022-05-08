@@ -94,8 +94,8 @@ export default class About extends Component{
                         <Heading marginTop="10px" marginBottom="25px">Our Team</Heading>
 
                         {/* User */}
-                        <SimpleGrid columns={2} spacing={10}>
-                        <Box as={motion.div} whileHover={{ scale: 1.03, boxShadow: "5px 5px 0 rgba(0, 0, 0, 0.2)" }} maxW='lg' margin="15px" borderWidth='1px' borderRadius='lg' overflow='hidden' padding="10px">
+                        <SimpleGrid columns={[1, null, 2]} spacing={10}>
+                        <Box as={motion.div} whileHover={{ scale: 1.03, boxShadow: "5px 5px 0 rgba(0, 0, 0, 0.2)" }} maxW="lg" margin="15px" borderWidth='1px' borderRadius='lg' overflow='hidden' padding="10px">
                             <Stack 
                                 direction='row' 
                                 spacing={4}
@@ -132,10 +132,10 @@ export default class About extends Component{
                             </Stack>    
                         </Box>
 
-                        <Box maxW='lg' as={motion.div} whileHover={{ scale: 1.03,boxShadow: "5px 5px 0 rgba(0, 0, 0, 0.2)" }} transition={{ duration: 2 }}  margin="15px" borderWidth='1px' borderRadius='lg' overflow='hidden' padding="10px">
+                        <Box as={motion.div} whileHover={{ scale: 1.03,boxShadow: "5px 5px 0 rgba(0, 0, 0, 0.2)" }} maxW="lg" margin="15px" borderWidth='1px' borderRadius='lg' overflow='hidden' padding="10px">
                             <Stack 
                                 direction='row' 
-                                spacing={4} 
+                                 
                                 align="Center"
                             >
                                 <Avatar
