@@ -8,7 +8,8 @@ import {
     Avatar,
     Stack,
     Icon,
-    LinkOverlay
+    LinkOverlay,
+    SimpleGrid
 } from "@chakra-ui/react";
 import { motion } from 'framer-motion';
 import {
@@ -71,10 +72,6 @@ export default class About extends Component{
                             Ut sit amet velit vitae tortor porttitor sollicitudin vitae a nisl. Vivamus est risus, <b>[ VH10703 - JESWANTH MUKESH ]</b> aliquam vitae finibus sed, 
                             malesuada ut enim. Maecenas eget arcu faucibus, viverra arcu eget, dictum neque. Aliquam urna libero, aliquam et vulputate vitae, elementum et nisl. 
                             Donec eros urna, blandit non arcu ac, faucibus vehicula nisi. 
-                            Phasellus sodales vulputate augue sed iaculis. Aenean at arcu quis justo scelerisque imperdiet et tristique nibh. 
-                            Ut malesuada aliquam nulla sed hendrerit. Nullam vel lacus varius magna sodales congue. Praesent rutrum sagittis hendrerit. 
-                            Pellentesque accumsan velit condimentum enim feugiat tempor. Nunc mattis auctor lectus, porta ultricies erat dignissim sit amet. 
-                            Aenean hendrerit felis nibh, quis maximus risus vestibulum vitae.
                         </Text>
                     </Box>
                 </Container>
@@ -97,6 +94,7 @@ export default class About extends Component{
                         <Heading marginTop="10px" marginBottom="25px">Our Team</Heading>
 
                         {/* User */}
+                        <SimpleGrid columns={2} spacing={10}>
                         <Box as={motion.div} whileHover={{ scale: 1.03, boxShadow: "5px 5px 0 rgba(0, 0, 0, 0.2)" }} maxW='lg' margin="15px" borderWidth='1px' borderRadius='lg' overflow='hidden' padding="10px">
                             <Stack 
                                 direction='row' 
@@ -169,6 +167,7 @@ export default class About extends Component{
                                 </a>
                             </Stack>    
                         </Box>
+                        </SimpleGrid>
                     
                     </Box>
                 </Container>
