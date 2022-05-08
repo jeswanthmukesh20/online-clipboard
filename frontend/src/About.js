@@ -40,7 +40,6 @@ export default class About extends Component{
         return(
             <div>
                 {/* <NavBar /> */}
-                </Helmet>
                 <Container
                     // margin="20px"
                     marginTop={70}
