@@ -203,7 +203,8 @@ class App extends Component {
         <Container
         maxW={breakpoints}
         maxH={breakpoints}
-         bg="white" style={{
+        boxShadow='2xl'
+         bg="container.light" style={{
           marginTop: "60px",
           borderRadius: "10px",
           padding: "20px",
@@ -238,7 +239,7 @@ class App extends Component {
                 <Toast
               variant="solid"
               colorScheme="white"
-              bg="#56A6DC"
+              bg="submit.light"
               width='100%'
               marginTop="15px"
               submit={this.handleSubmit}
@@ -273,9 +274,10 @@ class App extends Component {
           textarea={true}/>: <div></div>} */}
         </Container>
         <Container
+        boxShadow='2xl'
           maxW={breakpoints}
           maxH={breakpoints}
-          bg="white" style={{
+          bg="container.light" style={{
             marginTop: "60px",
             borderRadius: "10px",
             padding: "20px",
