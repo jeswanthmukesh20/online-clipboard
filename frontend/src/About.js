@@ -75,9 +75,11 @@ export default class About extends Component{
                     borderRadius="15px"
                 >
 
-                    <Box justifyItems="center">
+                    <Box margin="20px">
                         <Heading marginTop="10px" marginBottom="25px">Our Team</Heading>
-                        <Box maxW='lg' borderWidth='1px' borderRadius='lg' overflow='hidden' padding="10px">
+
+                        {/* User */}
+                        <Box maxW='lg' margin="10px" borderWidth='1px' borderRadius='lg' overflow='hidden' padding="10px">
                             <Stack 
                                 direction='row' 
                                 spacing={4} 
@@ -93,6 +95,36 @@ export default class About extends Component{
                                     fontFamily="Ubuntu"
                                 >
                                     Jeswanth Mukesh
+                                </Text>
+                            </Stack>
+                            <Text>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam volutpat volutpat viverra. Ut congue enim eget eros consequat, 
+                                amet dolor molestie porttitor dapibus eu neque. Phasellus vitae tortor in lectus ullamcorper porta dictum varius urna. Quisque erat 
+                                lobortis mi ornare sed. Curabitur faucibus eget metus tincidunt lobortis. Curabitur fringilla tempor lectus eget maximus.
+                                
+                            </Text>
+                            <Stack marginTop="10px" direction="row" spacing={2}>
+                                <Icon as={FaGithub}/>
+                                <Icon color="#0077b5" as={FaLinkedinIn}/>
+                                <Icon color="#00acee" as={FaTwitter}/>
+                            </Stack>    
+                        </Box>
+
+                        <Box maxW='lg' margin="10px" borderWidth='1px' borderRadius='lg' overflow='hidden' padding="10px">
+                            <Stack 
+                                direction='row' 
+                                spacing={4} 
+                                align="Center"
+                            >
+                                <Avatar
+                                    name='Ryan Florence' 
+                                    src='https://avatars.dicebear.com/api/male/ashwin.svg?mood[]=happy' 
+                                />
+                                <Text 
+                                    fontSize="4xl"
+                                    fontWeight="bold"
+                                    fontFamily="Ubuntu"
+                                >
+                                    Ashwin
                                 </Text>
                             </Stack>
                             <Text>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam volutpat volutpat viverra. Ut congue enim eget eros consequat, 
