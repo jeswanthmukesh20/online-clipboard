@@ -4,25 +4,32 @@ import App from './App';
 import { Routes, Route, Link, BrowserRouter as Router } from 'react-router-dom';
 import { extendTheme, ChakraProvider} from '@chakra-ui/react';
 import {mode} from "@chakra-ui/theme-tools";
+import About from './About';
 
 const colors = {
   primary: {
-    main: "#ffffff",
+    ligth: "#ffffff",
   },
   submit: {
-    main: "2374AB"
+    light: "#56A6DC" //#33a5f2
+  },
+  container: {
+    light: "#ffffff"
+  },
+  navbar: {
+    light: "#14202A"
   }
-}
+} 
 
 const config = {
   initialColorMode: 'light',
   useSystemColorMode: false,
 }
 
-const theme = extendTheme({ styles: {
+const theme = extendTheme({colors, styles: {
   global: (props) => ({
     "html, body": {
-      background: "#C1CCD7",  //mode(light mode color, dark mode color)
+      background: "#C1CCD7" //"",  //mode(light mode color, dark mode color)
     },
   }),
 }, config, colors})
@@ -46,13 +53,13 @@ function Final() {
   )
 }
 
-const About = () => {
-  return (
-    <div>
-      <h1>About</h1>
-    </div>
-  )
-}
+// const About = () => {
+//   return (
+//     <div>
+//       <h1>About</h1>
+//     </div>
+//   )
+// }
 
 const Contact = () => {
   return (
