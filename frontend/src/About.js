@@ -90,7 +90,7 @@ export default class About extends Component{
                     borderRadius="15px"
                 >
 
-                    <Box margin="20px">
+                    <Box margin="15px">
                         <Heading marginTop="10px" marginBottom="25px">Our Team</Heading>
 
                         {/* User */}
