@@ -69,7 +69,7 @@ export default class About extends Component{
                         </Text>
 
                         <Text padding="10px">
-                            Ut sit amet velit vitae tortor porttitor sollicitudin vitae a nisl. Vivamus est risus, <b>[ VH10703 - JESWANTH MUKESH ]</b> aliquam vitae finibus sed, 
+                            Ut sit amet velit vitae tortor porttitor sollicitudin vitae a nisl. Vivamus est risus,aliquam vitae finibus sed, 
                             malesuada ut enim. Maecenas eget arcu faucibus, viverra arcu eget, dictum neque. Aliquam urna libero, aliquam et vulputate vitae, elementum et nisl. 
                             Donec eros urna, blandit non arcu ac, faucibus vehicula nisi. 
                         </Text>
