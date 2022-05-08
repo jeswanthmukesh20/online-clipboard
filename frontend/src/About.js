@@ -1,5 +1,6 @@
 import React,{Component} from "react";
 import NavBar from "./components/Navbar";
+import SidebarWithHeader from "./components/Sidebar";
 import {
     Box,
     Heading,
@@ -21,12 +22,12 @@ import {
 
 const ps = "5px"
 const breakpoints = {
-    base: "90%",
-    sm: '90%',
-    md: '80%',
-    lg: '70%',
-    xl: '70%',
-    '2xl': '70%',
+    base: "100%",
+    sm: '100%',
+    md: '100%',
+    lg: '100%',
+    xl: '100%',
+    '2xl': '100%',
   }
 
 const Hover = () => {
@@ -37,10 +38,12 @@ export default class About extends Component{
     render(){
         return(
             <div>
-                <NavBar />
+                {/* <NavBar /> */}
                 
                 <Container
-                    marginTop="20px"
+                    // margin="20px"
+                    marginTop={70}
+                    marginRight="30px"
                     bg="#ffffff"
                     maxH={breakpoints}
                     maxW={breakpoints}
@@ -76,7 +79,9 @@ export default class About extends Component{
                     </Box>
                 </Container>
                 <Container
-                    marginTop="20px"
+                    // margin="20px"
+                    marginTop={10}
+                    marginRight="30px"
                     bg="container.light"
                     maxH={breakpoints}
                     maxW={breakpoints}

@@ -4,7 +4,8 @@ import App from './App';
 import { Routes, Route, Link, BrowserRouter as Router } from 'react-router-dom';
 import { extendTheme, ChakraProvider} from '@chakra-ui/react';
 import {mode} from "@chakra-ui/theme-tools";
-import About from './About';
+import Abt from './About';
+import Sidebar from './components/Sidebar';
 
 const colors = {
   primary: {
@@ -34,6 +35,22 @@ const theme = extendTheme({colors, styles: {
   }),
 }, config, colors})
 
+const Home = () => {
+  return (
+    <>
+      <Sidebar children={<App/>}/>
+    </>
+  )
+}
+
+const About = () => {
+  return (
+    <>
+      <Sidebar children={<Abt/>}/>
+    </>
+  )
+}
+
 function Final() {
   return (
     <div>
@@ -42,7 +59,7 @@ function Final() {
           <Route path="/about" element={<About/>}/>
         </Routes>
         <Routes>
-          <Route path="/" element={<App/>}/>
+          <Route path="/" element={<Home/>}/>
         </Routes>
         <Routes>
           <Route path="/contact" element={<Contact/>}/>

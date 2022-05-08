@@ -12,6 +12,7 @@ import {
   Text,
   SkeletonText
 } from '@chakra-ui/react';
+import SidebarWithHeader from './components/Sidebar'
 import Navbar from './components/Navbar.js';
 import { Search2Icon, CopyIcon } from "@chakra-ui/icons";
 const axios = require("axios");
@@ -199,7 +200,9 @@ class App extends Component {
           <meta name="msapplication-TileImage" content="https://onclip.herokuapp.com/favicon/ms-icon-144x144.png"/> */}
           {/* <meta name="theme-color" content="#56a6dc"/> */}
         </Helmet>
-        <Navbar />
+        {/* <Navbar />
+         */}
+         
         <Container
         maxW={breakpoints}
         maxH={breakpoints}
