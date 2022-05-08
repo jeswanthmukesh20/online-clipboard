@@ -1,7 +1,7 @@
 import React,{Component} from "react";
 import NavBar from "./components/Navbar";
 import SidebarWithHeader from "./components/Sidebar";
-import {Helmet} from "react-helmet";
+
 import {
     Box,
     Heading,
@@ -40,27 +40,6 @@ export default class About extends Component{
         return(
             <div>
                 {/* <NavBar /> */}
-                <Helmet>
-                    <title>CopyTxt Online - The Online Clipboard - Copy your text online and share it with anyone</title>
-                    <meta name="description" content="Copytxt.online is a free online clipboard. You can save your text to the cloud and retrive it from any device. "/>
-                    <meta name="keywords" content='online clipboard, copy text online, share text online, store txt online, share text in cloud, copy online, copy paste online, save online, share links online, save links online'/>
-                    <meta name="author" content="Copytxt.online"/>
-                    <meta name="robots" content="index, follow"/>
-                    <link rel="icon" type="image/png" href={favicon}/>
-                    {/* <meta name="revisit-after" content="1 days"/> */}
-                    <meta name="language" content="English"/>
-                    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-                    <meta name="theme-color" content="#56a6dc"/>
-                    <meta name="msapplication-TileColor" content="#56a6dc"/>
-                    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
-                    {/* <link rel="icon" type="image/png" sizes="192x192" href="https://onclip.herokuapp.com/favicon/android-icon-192x192.png"/>
-                    <link rel="icon" type="image/png" sizes="32x32" href="https://onclip.herokuapp.com/favicon/favicon-32x32.png"/>
-                    <link rel="icon" type="image/png" sizes="96x96" href="https://onclip.herokuapp.com/favicon/favicon-96x96.png"/>
-                    <link rel="icon" type="image/png" sizes="16x16" href="https://onclip.herokuapp.com/favicon/favicon-16x16.png"/>
-                    <link rel="manifest" href="https://onclip.herokuapp.com/favicon/manifest.json"/>
-                    <meta name="msapplication-TileColor" content="#ffffff"/>
-                    <meta name="msapplication-TileImage" content="https://onclip.herokuapp.com/favicon/ms-icon-144x144.png"/> */}
-                    {/* <meta name="theme-color" content="#56a6dc"/> */}
                 </Helmet>
                 <Container
                     // margin="20px"
