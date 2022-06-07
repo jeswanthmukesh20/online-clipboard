@@ -60,6 +60,7 @@ export default class About extends Component{
                         marginBottom="25px"
                     >About CopyTxT</Heading>
                     <Box>
+<<<<<<< HEAD
                         <Text padding="10px">
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam volutpat volutpat viverra. 
                             Ut congue enim eget eros consequat, id fermentum massa pellentesque. 
@@ -76,6 +77,15 @@ export default class About extends Component{
                             malesuada ut enim. Maecenas eget arcu faucibus, viverra arcu eget, dictum neque. Aliquam urna libero, aliquam et vulputate vitae, elementum et nisl. 
                             Donec eros urna, blandit non arcu ac, faucibus vehicula nisi. 
                         </Text>
+=======
+                        <Text padding="5px">
+                        CopyTxT is a free online clipboard that makes sharing text or code snippets between devices easy and anonymous. The content posted on the clipboard is stored in the cloud. It can be retrieved using a 4-digit unique retrieve ID provided. 
+                        </Text>
+
+                        {/* <Text padding="5px">
+                            Ut sit amet velit vitae tortor porttitor sollicitudin vitae a nisl. Vivamus est risus, <b>[ VH10703 - JESWANTH MUKESH ]</b> aliquam vitae finibus sed, malesuada ut enim. Maecenas eget arcu faucibus, viverra arcu eget, dictum neque. Aliquam urna libero, aliquam et vulputate vitae, elementum et nisl. Donec eros urna, blandit non arcu ac, faucibus vehicula nisi. Phasellus sodales vulputate augue sed iaculis. Aenean at arcu quis justo scelerisque imperdiet et tristique nibh. Ut malesuada aliquam nulla sed hendrerit. Nullam vel lacus varius magna sodales congue. Praesent rutrum sagittis hendrerit. Pellentesque accumsan velit condimentum enim feugiat tempor. Nunc mattis auctor lectus, porta ultricies erat dignissim sit amet. Aenean hendrerit felis nibh, quis maximus risus vestibulum vitae.
+                        </Text> */}
+>>>>>>> about
                     </Box>
                 </Container>
                 <Container
