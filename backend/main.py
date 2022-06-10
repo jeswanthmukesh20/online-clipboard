@@ -30,18 +30,13 @@ def home():
 
 @app.post("/paste")
 async def paste(data: dict) -> dict:
-    ret_id = 0
-    resp = await retrive_id.find_one({"retrive_id": "ret_id"})
-    while True:
+    ret_id = random.randint(1000, 9999)
+    resp = await retrive_id.find_one({"retrive_id": ret_id})
+    while resp is not None:
         ret_id = random.randint(1000, 9999)
-        if resp is None:
-            break
-        if resp["retrive_id"] == ret_id:
-            continue
-        else:
-            break
+        resp = await retrive_id.find_one({"retrive_id": ret_id})
     await retrive_id.insert_one({"retrive_id": ret_id})
-    await clipboard.insert_one({"retrive_id": ret_id, "data": data["data"]})
+    await clipboard.insert_one({"retrive_id": ret_id, "data": data["data"], "meta": data['meta']})
     return {
         "msg": "success",
         "id": ret_id
@@ -60,5 +55,6 @@ async def retrive(data: dict) -> dict:
         }
     return {
         "msg": "success",
-        "data": resp["data"]
+        "data": resp["data"],
+        "meta": resp["meta"]
     }

@@ -201,7 +201,12 @@ function ToastBox(props){
       }
       }
     >
-      {(props.textarea) ? <Textarea isReadonly={true} variant="filled" focusBorderColor="gray.300" height="200px" value={props.data}/> : props.data }
+      {/* {( props.data.meta.isCode) ? <SyntaxHighlighter language={props.data.meta.language} style={props.data.meta.theme}>{props.data}</SyntaxHighlighter>  : <Textarea isReadonly={true} variant="filled" focusBorderColor="gray.300" height="200px" value={props.data.data}/> }
+      {props.textarea ? <Textarea isReadonly={true} variant="filled" focusBorderColor="gray.300" height="200px" value={props.data.data}/> : props.data.data} */}
+      {() =>{ 
+        console.log(props.data)
+        return props.data.data
+      }}
     </Box>
   )
 }
@@ -234,9 +239,10 @@ class App extends Component {
       }).then(res => {
         if(res.data.msg === "success"){
           this.setState({
-            resp: res.data.data,
+            resp: res.data,
             started: false
           })
+          console.log(res.data)
         }else{
           this.setState({
             resp: "Invalid retrive id",
@@ -427,10 +433,6 @@ class App extends Component {
             {this.state.value}
           </SyntaxHighlighter>: <></>}
           
-          {/* <Editor
-          onValueChange={code => this.setState({code: code})}
-          highlight={code => highlight(code, languages.js)}
-          /> */}
           <Textarea
               mt={5}
              placeholder="Paste your text here"
@@ -459,6 +461,7 @@ class App extends Component {
                  })
                }
               }}
+             
              />
           <Tooltip label="click to submit" placement="bottom">
                 <Toast
