@@ -80,6 +80,7 @@ const styles = {
   "zTouch": theme.zTouch
 }
 
+
 function CreatedToast(props){
   const toast = useToast()
   const toastIdRef = useRef()
@@ -174,7 +175,7 @@ function ToastBox(props){
           duration: props.duration,
           isClosable: props.closable,
         })
-        navigator.clipboard.writeText(!props.textarea ? props.data : props.data.data )
+        navigator.clipboard.writeText(props.data.data )
       }} 
       language={props.data.meta.language} 
       style={{...styles[props.data.meta.theme]}}>
@@ -209,13 +210,18 @@ class App extends Component {
       // https://onclip.herokuapp.com/retrive
       axios.post("https://onclip.herokuapp.com/retrive", {
         retrive_id: e.target.value
+      },{
+        "accept": "application/json",
+        "Content-type": "application/json"
       }).then(res => {
+        console.log(this.state.resp, 'response')
         if(res.data.msg === "success"){
           this.setState({
             resp: res.data,
             started: false
           })
-          console.log(this.state.resp, 'response')
+          console.log('success')
+         
         }else{
           this.setState({
             resp: "Invalid retrive id",
@@ -225,7 +231,7 @@ class App extends Component {
         
       }).catch(error => {
         console.log(error, "error")
-        this.setState({started: false})
+        this.setState({started: false, resp: null})
       })
     }
   }
@@ -514,7 +520,7 @@ class App extends Component {
               duration={1500}
               closable={true}
               textarea={true}
-              isCode={this.state.resp.meta.isCode}
+              isCode={(this.state.resp.meta.isCode !== undefined) ? this.state.resp.meta.isCode : false}
             />
             </Tooltip>
           </>: <div></div>}
