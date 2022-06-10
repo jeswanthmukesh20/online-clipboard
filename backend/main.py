@@ -31,6 +31,7 @@ def home():
 @app.post("/paste")
 async def paste(data: dict) -> dict:
     ret_id = random.randint(1000, 9999)
+    print(data)
     resp = await retrive_id.find_one({"retrive_id": ret_id})
     while resp is not None:
         ret_id = random.randint(1000, 9999)
@@ -44,10 +45,11 @@ async def paste(data: dict) -> dict:
 
 @app.post("/retrive")
 async def retrive(data: dict) -> dict:
+    print(f"incomming data: {data['retrive_id']}")
     resp = await clipboard.find_one({
         "retrive_id": int(data["retrive_id"])
         })
-    # print(resp)
+    print(f"resp from db: {resp}")
     if resp is None:
         return {
             "msg": "error",

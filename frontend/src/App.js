@@ -16,56 +16,9 @@ import {
   Stack,
   Select
 } from '@chakra-ui/react';
-// import Editor from 'react-simple-code-editor';
-// import { highlight, languages } from 'prismjs/components/prism-core';
-// import 'prismjs/components/prism-clike';
-// import 'prismjs/components/prism-javascript';
-// import 'prismjs/themes/prism.css'; 
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { 
-  dark,
-  funky,
-  okaidia,
-  solarizedlight,
-  tomorrow,
-  twilight,
-  prism,
-  a11yDark,
-  atomDark,
-  base16AteliersulphurpoolLight,
-  cb,
-  coldarkCold,
-  coldarkDark,
-  coyWithoutShadows,
-  darcula,
-  dracula,
-  duotoneDark,
-  duotoneEarth,
-  duotoneForest,
-  duotoneLight,
-  duotoneSea,
-  duotoneSpace,
-  ghcolors,
-  gruvboxDark,
-  gruvboxLight,
-  holiTheme,
-  hopscotch,
-  lucario,
-  materialDark,
-  materialLight,
-  materialOceanic,
-  nightOwl,
-  nord,
-  oneDark,
-  oneLight,
-  pojoaque,
-  shadesOfPurple,
-  solarizedDarkAtom,
-  synthwave84,
-  vs,
-  vscDarkPlus,
-  xonokai,
-  zTouch } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import * as theme from 'react-syntax-highlighter/dist/esm/styles/prism';
+
 import SidebarWithHeader from './components/Sidebar'
 import Navbar from './components/Navbar.js';
 import { Search2Icon, CopyIcon } from "@chakra-ui/icons";
@@ -82,49 +35,49 @@ const breakpoints = {
 }
 
 const styles = {
-  "dark":dark,
-  "funky":funky,
-  "okaidia":okaidia,
-  "solarizedlight":solarizedlight,
-  "tomorrow":tomorrow,
-  "twilight":twilight,
-  "prism":prism,
-  "a11yDark":a11yDark,
-  "atomDark":atomDark,
-  "base16AteliersulphurpoolLight":base16AteliersulphurpoolLight,
-  "cb":cb,
-  "coldarkCold":coldarkCold,
-  "coldarkDark":coldarkDark,
-  "coyWithoutShadows":coyWithoutShadows,
-  "darcula":darcula,
-  "dracula":dracula,
-  "duotoneDark":duotoneDark,
-  "duotoneEarth":duotoneEarth,
-  "duotoneForest":duotoneForest,
-  "duotoneLight":duotoneLight,
-  "duotoneSea":duotoneSea,
-  "duotoneSpace":duotoneSpace,
-  "ghcolors":ghcolors,
-  "gruvboxDark":gruvboxDark,
-  "gruvboxLight":gruvboxLight,
-  "holiTheme":holiTheme,
-  "hopscotch":hopscotch,
-  "lucario":lucario,
-  "materialDark":materialDark,
-  "materialLight":materialLight,
-  "materialOceanic":materialOceanic,
-  "nightOwl":nightOwl,
-  "nord":nord,
-  "oneDark":oneDark,
-  "oneLight":oneLight,
-  "pojoaque":pojoaque,
-  "shadesOfPurple":shadesOfPurple,
-  "solarizedDarkAtom":solarizedDarkAtom,
-  "synthwave84":synthwave84,
-  "vs":vs,
-  "vscDarkPlus":vscDarkPlus,
-  "xonokai":xonokai,
-  "zTouch":zTouch
+  "dark": theme.dark,
+  "funky": theme.funky,
+  "okaidia": theme.okaidia,
+  "solarizedlight": theme.solarizedlight,
+  "tomorrow": theme.tomorrow,
+  "twilight": theme.twilight,
+  "prism": theme.prism,
+  "a11yDark": theme.a11yDark,
+  "atomDark": theme.atomDark,
+  "base16AteliersulphurpoolLight": theme.base16AteliersulphurpoolLight,
+  "cb": theme.cb,
+  "coldarkCold": theme.coldarkCold,
+  "coldarkDark": theme.coldarkDark,
+  "coyWithoutShadows": theme.coyWithoutShadows,
+  "darcula": theme.darcula,
+  "dracula": theme.dracula,
+  "duotoneDark": theme.duotoneDark,
+  "duotoneEarth": theme.duotoneEarth,
+  "duotoneForest": theme.duotoneForest,
+  "duotoneLight": theme.duotoneLight,
+  "duotoneSea": theme.duotoneSea,
+  "duotoneSpace": theme.duotoneSpace,
+  "ghcolors": theme.ghcolors,
+  "gruvboxDark": theme.gruvboxDark,
+  "gruvboxLight": theme.gruvboxLight,
+  "holiTheme": theme.holiTheme,
+  "hopscotch": theme.hopscotch,
+  "lucario": theme.lucario,
+  "materialDark": theme.materialDark,
+  "materialLight": theme.materialLight,
+  "materialOceanic": theme.materialOceanic,
+  "nightOwl": theme.nightOwl,
+  "nord": theme.nord,
+  "oneDark": theme.oneDark,
+  "oneLight": theme.oneLight,
+  "pojoaque": theme.pojoaque,
+  "shadesOfPurple": theme.shadesOfPurple,
+  "solarizedDarkAtom": theme.solarizedDarkAtom,
+  "synthwave84": theme.synthwave84,
+  "vs": theme.vs,
+  "vscDarkPlus": theme.vscDarkPlus,
+  "xonokai": theme.xonokai,
+  "zTouch": theme.zTouch
 }
 
 function CreatedToast(props){
@@ -175,8 +128,10 @@ function Toast(props) {
 
 function ToastBox(props){
   const toast = useToast()
+  
+    
   return (
-    <Box
+    (!props.isCode) ? <Box
       marginTop={props.mt}
       marginBottom={props.mb}
       ml={props.ml}
@@ -188,7 +143,12 @@ function ToastBox(props){
       alignItems="center"
       width={props.width}
       fontWeight={props.fontWeight}
-      onClick={() => {
+      style={ (props.isCode) ? {
+        display:"flex",
+        alignItems: "center",
+        justifyContent:"center"
+      } : {}}
+      onClick={ () => {
         
         toast({
           title: props.title,
@@ -197,17 +157,29 @@ function ToastBox(props){
           duration: props.duration,
           isClosable: props.closable,
         })
-        navigator.clipboard.writeText(props.data)
-      }
-      }
+        navigator.clipboard.writeText(!props.textarea ? props.data : props.data.data )
+      } 
+    }
+    
     >
-      {/* {( props.data.meta.isCode) ? <SyntaxHighlighter language={props.data.meta.language} style={props.data.meta.theme}>{props.data}</SyntaxHighlighter>  : <Textarea isReadonly={true} variant="filled" focusBorderColor="gray.300" height="200px" value={props.data.data}/> }
-      {props.textarea ? <Textarea isReadonly={true} variant="filled" focusBorderColor="gray.300" height="200px" value={props.data.data}/> : props.data.data} */}
-      {() =>{ 
-        console.log(props.data)
-        return props.data.data
-      }}
-    </Box>
+      {(!props.textarea) ? props.data : <Textarea style={{
+        color: "black"
+      }} variant="filled" isReadOnly resize={"none"} value={props.data.data} />}
+      
+    </Box> : <SyntaxHighlighter onClick={() => { 
+        toast({
+          title: props.title,
+          description: props.description,
+          status: props.status,
+          duration: props.duration,
+          isClosable: props.closable,
+        })
+        navigator.clipboard.writeText(!props.textarea ? props.data : props.data.data )
+      }} 
+      language={props.data.meta.language} 
+      style={{...styles[props.data.meta.theme]}}>
+        {props.data.data}
+    </SyntaxHighlighter>  
   )
 }
 
@@ -234,7 +206,8 @@ class App extends Component {
       this.setState({
         started: true
       })
-      axios.post("https://onclip.herokuapp.com/retrive", {
+      // https://onclip.herokuapp.com/retrive
+      axios.post("http://localhost:8000/retrive", {
         retrive_id: e.target.value
       }).then(res => {
         if(res.data.msg === "success"){
@@ -242,7 +215,7 @@ class App extends Component {
             resp: res.data,
             started: false
           })
-          console.log(res.data)
+          console.log(this.state.resp, 'response')
         }else{
           this.setState({
             resp: "Invalid retrive id",
@@ -251,7 +224,7 @@ class App extends Component {
         }
         
       }).catch(error => {
-        console.log(error)
+        console.log(error, "error")
         this.setState({started: false})
       })
     }
@@ -259,17 +232,18 @@ class App extends Component {
   
   handleSubmit = (e) => {
     if(this.state.value != "" && this.state.value != null && this.state.subFailed === false){
-      console.log(`value: ${this.state.value} loading on`)
       this.setState({loading: true})
-      axios.post("https://onclip.herokuapp.com/paste", {
-        data: this.state.value,
-        meta: {
-          isCode: this.state.switch,
-          language: this.state.language,
-          theme: this.state.theme
-        },
-
-      }, 
+      let data = {
+          data: this.state.value,
+          meta: {
+            isCode: this.state.switch,
+            language: this.state.language,
+            theme: this.state.theme !== undefined ? this.state.theme : ""
+        }
+      }
+        console.log(data)
+        // "https://onclip.herokuapp.com/paste"
+      axios.post("http://localhost:8000/paste", data, 
       {
         "accept": "application/json",
         "Content-type": "application/json"
@@ -319,14 +293,14 @@ class App extends Component {
         </Helmet>
          
         <Container
-        maxW={breakpoints}
-        maxH={breakpoints}
-        boxShadow='2xl'
-         bg="container.light" style={{
-          marginTop: "60px",
-          borderRadius: "10px",
-          padding: "20px",
-        }}>
+          maxW={breakpoints}
+          maxH={breakpoints}
+          boxShadow='2xl'
+          bg="container.light" style={{
+            marginTop: "60px",
+            borderRadius: "10px",
+            padding: "20px",
+          }}>
           <Stack display='flex' spacing={2} alignItems='center' justifyContent="flex-end" direction="row" mb="10px">
             <><FormLabel htmlFor="syntax">Syntax Highlighting: </FormLabel>
           <Switch id="syntax" isChecked={this.state.switch} onChange={()=> this.setState({switch: !this.state.switch})}/>  </>
@@ -489,6 +463,7 @@ class App extends Component {
             status='success'
             duration={1500}
             closable={true}
+            textarea={false}
             mt="10px"
             fontWeight='semibold'
          /> </Tooltip> 
@@ -539,6 +514,7 @@ class App extends Component {
               duration={1500}
               closable={true}
               textarea={true}
+              isCode={this.state.resp.meta.isCode}
             />
             </Tooltip>
           </>: <div></div>}
