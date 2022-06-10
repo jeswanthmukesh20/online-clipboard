@@ -308,8 +308,8 @@ class App extends Component {
             padding: "20px",
           }}>
           <Stack display='flex' spacing={2} alignItems='center' justifyContent="flex-end" direction={{
-            base: "row",
-            sm: "column"
+            base: "column",
+            sm: "row"
           }} mb="10px">
             <><FormLabel htmlFor="syntax">Syntax Highlighting: </FormLabel>
           <Switch id="syntax" isChecked={this.state.switch} onChange={()=> this.setState({switch: !this.state.switch})}/>  </>
