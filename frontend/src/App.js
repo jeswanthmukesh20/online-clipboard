@@ -224,7 +224,7 @@ class App extends Component {
          
         }else{
           this.setState({
-            resp: "Invalid retrive id",
+            resp: null,
             started: false
           })
         }
