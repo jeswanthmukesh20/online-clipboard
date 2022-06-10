@@ -207,7 +207,7 @@ class App extends Component {
         started: true
       })
       // https://onclip.herokuapp.com/retrive
-      axios.post("http://localhost:8000/retrive", {
+      axios.post("https://onclip.herokuapp.com/retrive", {
         retrive_id: e.target.value
       }).then(res => {
         if(res.data.msg === "success"){
@@ -243,7 +243,7 @@ class App extends Component {
       }
         console.log(data)
         // "https://onclip.herokuapp.com/paste"
-      axios.post("http://localhost:8000/paste", data, 
+      axios.post("https://onclip.herokuapp.com/paste", data, 
       {
         "accept": "application/json",
         "Content-type": "application/json"
