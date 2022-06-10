@@ -1,3 +1,5 @@
 fastapi==0.75.2
 motor==2.5.1
 uvicorn
+pymongo[srv]
+dnspython
