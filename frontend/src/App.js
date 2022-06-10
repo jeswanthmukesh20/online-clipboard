@@ -361,7 +361,7 @@ class App extends Component {
             <option value="xonokai">xonokai</option>
             <option value="zTouch">zTouch</option>   
           </Select>
-          <Select variant='filled' isDisabled={!this.state.switch} placeholder='Language' onChange={(e) => {
+          <Select variant='filled' isDisabled={!this.state.switch} isRequired placeholder='Language' onChange={(e) => {
             this.setState({
               language: e.target.value
             })
