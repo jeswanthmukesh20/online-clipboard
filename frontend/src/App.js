@@ -27,7 +27,7 @@ import {Helmet} from "react-helmet";
 import favicon from "./favicon.png";
 const breakpoints = {
   base: "90%",
-  sm: '90%',
+  sm: '95%',
   md: '80%',
   lg: '70%',
   xl: '70%',
