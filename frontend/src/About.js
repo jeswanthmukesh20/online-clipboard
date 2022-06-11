@@ -1,7 +1,7 @@
 import React,{Component} from "react";
 import NavBar from "./components/Navbar";
 import SidebarWithHeader from "./components/Sidebar";
-
+import Seo from './Seo'
 import {
     Box,
     Heading,
@@ -39,7 +39,7 @@ export default class About extends Component{
     render(){
         return(
             <div>
-                {/* <NavBar /> */}
+                <Seo/>
                 <Container
                     // margin="20px"
                     marginTop={70}
@@ -95,7 +95,7 @@ export default class About extends Component{
                                 align="Center"
                             >
                                 <Avatar
-                                    name='Ryan Florence' 
+                                    name='Jeswanth Mukesh' 
                                     src='https://avatars.githubusercontent.com/u/52715899?v=4' 
                                 />
                                 <Text 
@@ -131,8 +131,8 @@ export default class About extends Component{
                                 align="Center"
                             >
                                 <Avatar
-                                    name='Ryan Florence' 
-                                    src='https://avatars.dicebear.com/api/male/ashwin.svg?mood[]=happy' 
+                                    name='Ashwin' 
+                                    src='https://avatars.githubusercontent.com/u/96253622?v=4' 
                                 />
                                 <Text 
                                     fontSize="4xl"

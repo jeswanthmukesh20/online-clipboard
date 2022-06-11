@@ -1,11 +1,12 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 import App from './App';
 import { Routes, Route, Link, BrowserRouter as Router } from 'react-router-dom';
 import { extendTheme, ChakraProvider} from '@chakra-ui/react';
 import {mode} from "@chakra-ui/theme-tools";
 import Abt from './About';
 import Sidebar from './components/Sidebar';
+import Seo from './Seo';
 
 
 const colors = {
@@ -63,7 +64,7 @@ function Final() {
           <Route path="/" element={<Home/>}/>
         </Routes>
         <Routes>
-          <Route path="/contact" element={<Contact/>}/>
+          <Route path="/contact" element={<Contact />}/>
         </Routes>
       </Router>
     </div>
@@ -81,6 +82,7 @@ function Final() {
 const Cnt = () => {
   return (
     <div>
+
       <h1>Contact page</h1>
     </div>
   )
@@ -88,6 +90,7 @@ const Cnt = () => {
 const Contact = () => {
   return (
     <>
+    <Seo/>
       <Sidebar children={<Cnt/>}/>
     </>
   )
@@ -100,10 +103,10 @@ const Contact = () => {
 //   <Router>
 // )
 
-ReactDOM.render(
+const root = ReactDOM.createRoot(document.getElementById('root'));
+
+root.render(
   <ChakraProvider initialColorMode={config.initialColorMode} theme={theme}>
   <Final/>
   </ChakraProvider>
-  ,
-  document.getElementById('root')
 );
