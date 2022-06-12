@@ -365,9 +365,9 @@ class App extends Component {
                         fontFamily: 'ui-monospace,SFMono-Regular,SF Mono,Consolas,Liberation Mono,Menlo,monospace',
                         borderRadius: "5px",
                         minHeight: "200px",
-                        overflowY: "scroll",
-                        overflow: "scroll",
-                        resize: "none"
+                        // overflowY: "scroll",
+                        // overflow: "scroll",
+                        // resize: "none"
                     }
                     }
                     // style={styles[this.state.theme]}
