@@ -30,6 +30,7 @@ import languages from "./languages.json";
 const axios = require("axios");
 import {Helmet} from "react-helmet";
 import favicon from "./favicon.png";
+import CodeEditor from '@uiw/react-textarea-code-editor';
 
 const breakpoints = {
   base: "90%",
@@ -147,20 +148,20 @@ class App extends Component {
   constructor(props){
     super(props)
     this.state = {
-      id: null,
-      value: null,
-      resp: null,
-      error:false,
-      subFailed: true,
-      loading: false,
-      started: null,
-      switch: false,
-      code: "",
-      language: "",
-      theme: undefined,
-      isOpen: false,
+        id: null,
+        value: null,
+        resp: null,
+        error:false,
+        subFailed: true,
+        loading: false,
+        started: null,
+        switch: false,
+        code: "",
+        language: "",
+        theme: undefined,
+        isOpen: false,
         txt: "Expire in",
-        expire: 15*60
+        expire: 0
     }
   }
 
@@ -199,7 +200,7 @@ class App extends Component {
   }
 
   handleSubmit = (e) => {
-    if(this.state.value != "" && this.state.value != null && this.state.subFailed === false){
+    if(this.state.value !== "" && this.state.value != null && this.state.subFailed === false && this.state.expire !== 0){
       this.setState({loading: true})
       let data = {
           data: this.state.value,
@@ -210,7 +211,6 @@ class App extends Component {
         }
       }
         console.log(data)
-        // "https://onclip.herokuapp.com/paste"
       axios.post("https://online-clipboard.herokuapp.com/paste", data,
       {
         "accept": "application/json",
@@ -226,10 +226,11 @@ class App extends Component {
       })
     }else{
         this.setState({
-          error: true,
-          subFailed: true
+            error: (this.state.expire !== 0),
+            subFailed: true
         })
-      }
+    }
+
   }
   render() {
     return (
@@ -247,14 +248,6 @@ class App extends Component {
           <meta name="theme-color" content="#56a6dc"/>
           <meta name="msapplication-TileColor" content="#56a6dc"/>
           <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
-          {/* <link rel="icon" type="image/png" sizes="192x192" href="https://onclip.herokuapp.com/favicon/android-icon-192x192.png"/>
-          <link rel="icon" type="image/png" sizes="32x32" href="https://onclip.herokuapp.com/favicon/favicon-32x32.png"/>
-          <link rel="icon" type="image/png" sizes="96x96" href="https://onclip.herokuapp.com/favicon/favicon-96x96.png"/>
-          <link rel="icon" type="image/png" sizes="16x16" href="https://onclip.herokuapp.com/favicon/favicon-16x16.png"/>
-          <link rel="manifest" href="https://onclip.herokuapp.com/favicon/manifest.json"/>
-          <meta name="msapplication-TileColor" content="#ffffff"/>
-          <meta name="msapplication-TileImage" content="https://onclip.herokuapp.com/favicon/ms-icon-144x144.png"/> */}
-          {/* <meta name="theme-color" content="#56a6dc"/> */}
         </Helmet>
 
         <Container
@@ -275,18 +268,18 @@ class App extends Component {
                                                                         onChange={() => this.setState({switch: !this.state.switch})}/>}  </FormLabel>
 
             <HStack spacing={5}>
-              <Select variant='filled' isDisabled={!this.state.switch} colorScheme={"gray.700"} placeholder='default' maxW={150} onChange={(e) => {
-                this.setState({
-                  theme: e.target.value
-                })
-                console.log(this.state.theme)
-                console.log(e.target.value)
-              }}>
-                {
-                  Object.keys(styles).map(theme => {
-                  return (<option value={theme}>{theme}</option>)
-                })}
-              </Select>
+              {/*<Select variant='filled' isDisabled={!this.state.switch} colorScheme={"gray.700"} placeholder='default' maxW={150} onChange={(e) => {*/}
+              {/*  this.setState({*/}
+              {/*    theme: e.target.value*/}
+              {/*  })*/}
+              {/*  console.log(this.state.theme)*/}
+              {/*  console.log(e.target.value)*/}
+              {/*}}>*/}
+              {/*  {*/}
+              {/*    Object.keys(styles).map(theme => {*/}
+              {/*    return (<option value={theme}>{theme}</option>)*/}
+              {/*  })}*/}
+              {/*</Select>*/}
               <Select variant='filled' isDisabled={!this.state.switch} isRequired placeholder='Language' onChange={(e) => {
                 this.setState({
                   language: e.target.value
@@ -301,40 +294,84 @@ class App extends Component {
               </Select>
             </HStack>
           </Stack>
-          {this.state.switch ? <SyntaxHighlighter language={this.state.language} style={styles[this.state.theme]}>
-            {this.state.value}
-          </SyntaxHighlighter>: <></>}
+          {/*{this.state.switch ? <SyntaxHighlighter language={this.state.language} style={styles[this.state.theme]}>*/}
+          {/*  {this.state.value}*/}
+          {/*</SyntaxHighlighter>: <></>}*/}
 
-          <Textarea
-              mt={3}
-             placeholder="Paste your text here"
-             colorScheme="white"
-             color="black"
-             errorBorderColor="red.300"
-             isInvalid={this.state.error}
-             size="lg"
-             height="200px"
-             onChange={(e) => {
-               if(e.target.value !==""){
-                 this.setState({
-                   value: e.target.value,
-                   error: false,
-                   subFailed: false
-                  })
-                }else if(e.target.value !=="" && this.state.error === true){
-                 this.setState({error:false,
-                  value: e.target.value,
-                subFailed: false})
-               }else{
-                 this.setState({
-                   error:true,
-                   value: e.target.value,
-                   subFailed: true
-                 })
-               }
-              }}
+            {(!this.state.switch) ? <Textarea
+                    mt={3}
+                    placeholder="Paste your text here"
+                    colorScheme="white"
+                    color="black"
+                    errorBorderColor="red.300"
+                    isInvalid={this.state.error}
+                    size="lg"
+                    height="200px"
+                    onChange={(e) => {
+                        if (e.target.value !== "") {
+                            this.setState({
+                                value: e.target.value,
+                                error: false,
+                                subFailed: false
+                            })
+                        } else if (e.target.value !== "" && this.state.error === true) {
+                            this.setState({
+                                error: false,
+                                value: e.target.value,
+                                subFailed: false
+                            })
+                        } else {
+                            this.setState({
+                                error: true,
+                                value: e.target.value,
+                                subFailed: true
+                            })
+                        }
+                    }}
 
-             />
+                />:
+                <CodeEditor
+                    className="w-tc-editor-var"
+                    value={this.state.value}
+                    language={this.state.language}
+                    padding={15}
+                    placeholder="Paste your code here."
+                    onChange={(e) => {
+                        if (e.target.value !== "") {
+                            this.setState({
+                                value: e.target.value,
+                                error: false,
+                                subFailed: false
+                            })
+                        } else if (e.target.value !== "" && this.state.error === true) {
+                            this.setState({
+                                error: false,
+                                value: e.target.value,
+                                subFailed: false
+                            })
+                        } else {
+                            this.setState({
+                                error: true,
+                                value: e.target.value,
+                                subFailed: true
+                            })
+                        }
+                    }}
+                    // padding={15}
+                    style={{
+                        fontSize: 14,
+                        fontWeight: 400,
+                        backgroundColor: "rgb(45, 45, 45)",
+                        fontFamily: 'ui-monospace,SFMono-Regular,SF Mono,Consolas,Liberation Mono,Menlo,monospace',
+                        borderRadius: "5px",
+                        minHeight: "200px",
+                        overflowY: "scroll",
+                        overflow: "scroll",
+                        resize: "none"
+                    }
+                    }
+                    // style={styles[this.state.theme]}
+                />}
           {/* <Tooltip label="click to submit" placement="bottom"> */}
             <Stack marginTop="15px" display='flex'  alignItems='center' direction={{
                 base: "column",
@@ -357,32 +394,23 @@ class App extends Component {
                 alighItems={"center"}
 
               >
-                  <Center>{<TimeIcon ml={2} mr={2}/>}{(this.state.txt === "Expire in") ? this.state.txt : `${this.state.txt} left`} {<ChevronDownIcon mr={2}/>}</Center>
+                  <Center>{<TimeIcon ml={2} mr={2}/>}{(this.state.txt === "Expire in") ? this.state.txt : `Expire in ${this.state.txt}`} {<ChevronDownIcon mr={2}/>}</Center>
 
               </MenuButton>
               <MenuList>
-                  <MenuItem onClick={() => this.setState({txt: "15 minutes", expire: 15*60})}>15 minutes</MenuItem>
-                  <MenuItem onClick={() => this.setState({txt: "1 Hour", expire: 15*60*60})}>1 hour</MenuItem>
-                  <MenuItem onClick={() => this.setState({txt: "1 Day", expire: 15*60*60*24})}>1 day</MenuItem>
+                  <MenuItem onClick={() => this.setState({txt: "15 minutes", expire: 15*60, subFailed: false, error: false})}>15 minutes</MenuItem>
+                  <MenuItem onClick={() => this.setState({txt: "1 Hour", expire: 15*60*60, subFailed: false, error: false})}>1 hour</MenuItem>
+                  <MenuItem onClick={() => this.setState({txt: "1 Day", expire: 15*60*60*24, subFailed: false, error: false})}>1 day</MenuItem>
                   <MenuDivider/>
-                  <MenuItem onClick={() => this.setState({txt: "1 Weeks", expire: 15*60*60*24*7})}>1 week</MenuItem>
-                  <MenuItem onClick={() => this.setState({txt: "2 Weeks", expire: 15*60*60*24*14})}>2 weeks</MenuItem>
-                  <MenuItem onClick={() => this.setState({txt: "1 Month", expire: 15*60*60*24*30})}>1 month</MenuItem>
+                  <MenuItem onClick={() => this.setState({txt: "1 Weeks", expire: 15*60*60*24*7, subFailed: false, error: false})}>1 week</MenuItem>
+                  <MenuItem onClick={() => this.setState({txt: "2 Weeks", expire: 15*60*60*24*14, subFailed: false, error: false})}>2 weeks</MenuItem>
+                  <MenuItem onClick={() => this.setState({txt: "1 Month", expire: 15*60*60*24*30, subFailed: false, error: false})}>1 month</MenuItem>
               </MenuList>
             </Menu>
             <Button
-
                 variant="solid"
                 colorScheme="white"
                 bg="submit.light"
-            //     maxW={{
-            //         base: '60%',
-            //         sm: "100%",
-            //         md: '60%',
-            //         lg: '60%',
-            //         xl: '60%',
-            //         '2xl': '60%',
-            // }}
                 width={["100%","60%"]}
                 marginTop="15px"
                 onClick={this.handleSubmit}
@@ -392,7 +420,6 @@ class App extends Component {
                 Save to CopyTxT
             </Button>
         </Stack>
-          {/* </Tooltip> */}
 
             {(this.state.id !== null) ? <><Tooltip shouldWrapChildren label="click to copy" placement="bottom">
             Your Retrive ID: <ToastBox
@@ -407,13 +434,6 @@ class App extends Component {
             fontWeight='semibold'
          /> </Tooltip>
          </>: <div></div>}
-          {/* {this.state.id ? <CreatedToast
-          title='Created successfully.'
-          description="Text saved to clipboard successfully."
-          status='success'
-          duration={1500}
-          closable={true}
-          textarea={true}/>: <div></div>} */}
         </Container>
         <Container
         boxShadow='2xl'
