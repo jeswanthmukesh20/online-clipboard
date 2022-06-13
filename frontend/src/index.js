@@ -22,14 +22,14 @@ const colors = {
   navbar: {
     light: "#14202A"
   }
-} 
+}
 
 const config = {
   initialColorMode: 'light',
   useSystemColorMode: false,
 }
 
-const theme = extendTheme({colors, styles: {
+const theme = extendTheme({styles: {
   global: (props) => ({
     "html, body": {
       background: "#C1CCD7" //"",  //mode(light mode color, dark mode color)
@@ -68,7 +68,7 @@ function Final() {
         </Routes>
       </Router>
     </div>
-    
+
   )
 }
 
