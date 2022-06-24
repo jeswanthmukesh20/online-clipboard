@@ -171,7 +171,7 @@ class App extends Component {
         started: true
       })
       // https://onclip.herokuapp.com/retrive
-      axios.post("https://online-clipboard.herokuapp.com/retrive", {
+      axios.post("https://copytxt-online.herokuapp.com/retrive", {
         retrive_id: e.target.value
       },{
         "accept": "application/json",
@@ -211,7 +211,7 @@ class App extends Component {
         }
       }
         console.log(data)
-      axios.post("https://online-clipboard.herokuapp.com/paste", data,
+      axios.post("https://copytxt-online.herokuapp.com/paste", data,
       {
         "accept": "application/json",
         "Content-type": "application/json"
