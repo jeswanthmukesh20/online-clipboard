@@ -1,6 +1,4 @@
 import React,{Component} from "react";
-import NavBar from "./components/Navbar";
-import SidebarWithHeader from "./components/Sidebar";
 import Seo from './Seo'
 import breakpoints from "./components/Breakpoints";
 import {
@@ -11,7 +9,6 @@ import {
     Avatar,
     Stack,
     Icon,
-    LinkOverlay,
     SimpleGrid
 } from "@chakra-ui/react";
 import { motion } from 'framer-motion';
@@ -20,7 +17,6 @@ import {
     FaLinkedinIn,
     FaTwitter
 } from "react-icons/fa";
-// import {FaGithub} from "react"
 
 const ps = "5px"
 
@@ -39,8 +35,8 @@ export default class About extends Component{
                     marginTop={70}
                     marginRight="30px"
                     bg="#ffffff"
-                    maxH={breakpoints}
-                    maxW={breakpoints}
+                    maxH={breakpoints.TextContainer}
+                    maxW={breakpoints.TextContainer}
                     padding="20px"
                     // position="relative"
                     boxShadow='2xl'
@@ -64,8 +60,8 @@ export default class About extends Component{
                     marginTop={10}
                     marginRight="30px"
                     bg="container.light"
-                    maxH={breakpoints}
-                    maxW={breakpoints}
+                    maxH={breakpoints.TextContainer}
+                    maxW={breakpoints.TextContainer}
                     padding="20px"
                     // style={{
                     //     alignItems: "center",
