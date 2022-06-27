@@ -5,7 +5,7 @@ import Seo from './Seo'
 import {
     Box,
     Heading,
-    Container, 
+    Container,
     Text,
     Avatar,
     Stack,
@@ -22,14 +22,7 @@ import {
 // import {FaGithub} from "react"
 
 const ps = "5px"
-const breakpoints = {
-    base: "100%",
-    sm: '100%',
-    md: '100%',
-    lg: '100%',
-    xl: '100%',
-    '2xl': '100%',
-  }
+
 
 const Hover = () => {
 
@@ -61,7 +54,7 @@ export default class About extends Component{
                     >About CopyTxT</Heading>
                     <Box>
                         <Text padding="5px">
-                        CopyTxT is a free online clipboard that makes sharing text or code snippets between devices easy and anonymous. The content posted on the clipboard is stored in the cloud. It can be retrieved using a 4-digit unique retrieve ID provided. 
+                        CopyTxT is a free online clipboard that makes sharing text or code snippets between devices easy and anonymous. The content posted on the clipboard is stored in the cloud. It can be retrieved using a 4-digit unique retrieve ID provided.
                         </Text>
                     </Box>
                 </Container>
@@ -88,17 +81,17 @@ export default class About extends Component{
                         {/* User */}
                         <SimpleGrid columns={[1, null, 2]} spacing={4}>
                         <Box as={motion.div} whileHover={{ scale: 1.03, boxShadow: "5px 5px 0 rgba(0, 0, 0, 0.2)" }} maxW="lg"  borderWidth='1px' borderRadius='lg' overflow='hidden' padding="10px">
-                            <Stack 
-                                direction='row' 
+                            <Stack
+                                direction='row'
                                 spacing={4}
-                                
+
                                 align="Center"
                             >
                                 <Avatar
-                                    name='Jeswanth Mukesh' 
-                                    src='https://avatars.githubusercontent.com/u/52715899?v=4' 
+                                    name='Jeswanth Mukesh'
+                                    src='https://avatars.githubusercontent.com/u/52715899?v=4'
                                 />
-                                <Text 
+                                <Text
                                     fontSize="4xl"
                                     fontWeight="bold"
                                     fontFamily="Ubuntu"
@@ -106,10 +99,10 @@ export default class About extends Component{
                                     Jeswanth Mukesh
                                 </Text>
                             </Stack>
-                            <Text>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam volutpat volutpat viverra. Ut congue enim eget eros consequat, 
-                                amet dolor molestie porttitor dapibus eu neque. Phasellus vitae tortor in lectus ullamcorper porta dictum varius urna. Quisque erat 
+                            <Text>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam volutpat volutpat viverra. Ut congue enim eget eros consequat,
+                                amet dolor molestie porttitor dapibus eu neque. Phasellus vitae tortor in lectus ullamcorper porta dictum varius urna. Quisque erat
                                 lobortis mi ornare sed. Curabitur faucibus eget metus tincidunt lobortis. Curabitur fringilla tempor lectus eget maximus.
-                                
+
                             </Text>
                             <Stack direction="row" spacing={2}>
                                 <a href="https://github.com/jeswanthmukesh20" target="_blank">
@@ -121,20 +114,20 @@ export default class About extends Component{
                                 <a href="https://twitter.com/killshot_exe" target="_blank">
                                     <Icon color="#00acee" as={FaTwitter}/>
                                 </a>
-                            </Stack>    
+                            </Stack>
                         </Box>
 
                         <Box as={motion.div} whileHover={{ scale: 1.03,boxShadow: "5px 5px 0 rgba(0, 0, 0, 0.2)" }} maxW="lg"  borderWidth='1px' borderRadius='lg' overflow='hidden' padding="10px">
-                            <Stack 
-                                direction='row' 
-                                 
+                            <Stack
+                                direction='row'
+
                                 align="Center"
                             >
                                 <Avatar
-                                    name='Ashwin' 
-                                    src='https://avatars.githubusercontent.com/u/96253622?v=4' 
+                                    name='Ashwin'
+                                    src='https://avatars.githubusercontent.com/u/96253622?v=4'
                                 />
-                                <Text 
+                                <Text
                                     fontSize="4xl"
                                     fontWeight="bold"
                                     fontFamily="Ubuntu"
@@ -142,10 +135,10 @@ export default class About extends Component{
                                     Ashwin
                                 </Text>
                             </Stack>
-                            <Text>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam volutpat volutpat viverra. Ut congue enim eget eros consequat, 
-                                amet dolor molestie porttitor dapibus eu neque. Phasellus vitae tortor in lectus ullamcorper porta dictum varius urna. Quisque erat 
+                            <Text>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam volutpat volutpat viverra. Ut congue enim eget eros consequat,
+                                amet dolor molestie porttitor dapibus eu neque. Phasellus vitae tortor in lectus ullamcorper porta dictum varius urna. Quisque erat
                                 lobortis mi ornare sed. Curabitur faucibus eget metus tincidunt lobortis. Curabitur fringilla tempor lectus eget maximus.
-                                
+
                             </Text>
                             <Stack  direction="row" spacing={2}>
                                 <a href="https://github.com/ashwin3005" target="_blank">
@@ -157,10 +150,10 @@ export default class About extends Component{
                                 <a href="https://twitter.com/" target="_blank">
                                     <Icon color="#00acee" as={FaTwitter}/>
                                 </a>
-                            </Stack>    
+                            </Stack>
                         </Box>
                         </SimpleGrid>
-                    
+
                     </Box>
                 </Container>
             </div>
