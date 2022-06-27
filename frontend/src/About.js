@@ -99,10 +99,7 @@ export default class About extends Component{
                                     Jeswanth Mukesh
                                 </Text>
                             </Stack>
-                            <Text>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam volutpat volutpat viverra. Ut congue enim eget eros consequat,
-                                amet dolor molestie porttitor dapibus eu neque. Phasellus vitae tortor in lectus ullamcorper porta dictum varius urna. Quisque erat
-                                lobortis mi ornare sed. Curabitur faucibus eget metus tincidunt lobortis. Curabitur fringilla tempor lectus eget maximus.
-
+                            <Text>I'm a self-taught developer pursuing B.Tech in Artificial Intelligence and Data Science at Vel Tech High Tech Engineering college, Chennai. And currently working as an intern at Facetgr. I’m Interested in Machine Learning and Web Design.
                             </Text>
                             <Stack direction="row" spacing={2}>
                                 <a href="https://github.com/jeswanthmukesh20" target="_blank">
@@ -135,10 +132,7 @@ export default class About extends Component{
                                     Ashwin
                                 </Text>
                             </Stack>
-                            <Text>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam volutpat volutpat viverra. Ut congue enim eget eros consequat,
-                                amet dolor molestie porttitor dapibus eu neque. Phasellus vitae tortor in lectus ullamcorper porta dictum varius urna. Quisque erat
-                                lobortis mi ornare sed. Curabitur faucibus eget metus tincidunt lobortis. Curabitur fringilla tempor lectus eget maximus.
-
+                            <Text>I'm a 19 year old developer pursuing B.Tech in Artificial Intelligence and Data Science at Vel Tech High Tech Engineering college, Chennai. I’m currently learning Website-Design and Machine Learning.
                             </Text>
                             <Stack  direction="row" spacing={2}>
                                 <a href="https://github.com/ashwin3005" target="_blank">

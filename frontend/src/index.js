@@ -84,6 +84,7 @@ const Cnt = () => {
     <div>
 
       <h1>Contact page</h1>
+      <h3>Email: support@copytxt.online</h3>
     </div>
   )
 }
