@@ -5,7 +5,7 @@ const axios = require("axios");
 import Seo from './Seo'
 import RetriveContainer from './components/RetriveContainer'
 import TextContainer from './components/TextContainer'
-import Breakpoint from './components/Breakpoints'
+import Breakpoints from './components/Breakpoints'
 
 const styles = {
   "dark": theme.dark,
@@ -152,12 +152,12 @@ class App extends Component {
           <Seo/>
           <TextContainer
               setState={this.update}
-              breakpoints={Breakpoint}
+              breakpoints={Breakpoints}
               state={this.state}
               handleSubmit={this.handleSubmit}
           />
           <RetriveContainer
-              breakpoints={Breakpoint}
+              breakpoints={Breakpoints}
               state={this.state}
               handleSearch={this.handleSearch}
           />
