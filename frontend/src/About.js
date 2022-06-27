@@ -2,6 +2,7 @@ import React,{Component} from "react";
 import NavBar from "./components/Navbar";
 import SidebarWithHeader from "./components/Sidebar";
 import Seo from './Seo'
+import breakpoints from "./components/Breakpoints";
 import {
     Box,
     Heading,
