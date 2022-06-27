@@ -1,6 +1,7 @@
 import {Box, Textarea, useToast} from "@chakra-ui/react";
 import {Prism as SyntaxHighlighter} from "react-syntax-highlighter";
 import React from "react";
+import styles from "./SyntaxTheme";
 
 function ToastBox(props){
     const toast = useToast()
@@ -26,14 +27,14 @@ function ToastBox(props){
             } : {}}
             onClick={ () => {
 
-                toast({
+
+                navigator.clipboard.writeText(!props.textarea ? props.data : props.data.data).then(r => toast({
                     title: props.title,
                     description: props.description,
                     status: props.status,
                     duration: props.duration,
                     isClosable: props.closable,
-                })
-                navigator.clipboard.writeText(!props.textarea ? props.data : props.data.data )
+                }))
             }
             }
 
@@ -42,20 +43,20 @@ function ToastBox(props){
                 color: "black"
             }} variant="filled" isReadOnly resize={"none"} value={props.data.data} />}
 
-        </Box> : <SyntaxHighlighter onClick={() => {
-            toast({
-                title: props.title,
-                description: props.description,
-                status: props.status,
-                duration: props.duration,
-                isClosable: props.closable,
-            })
-            navigator.clipboard.writeText(props.data.data )
-        }}
-                                    language={props.data.meta.language}
-                                    style={{...styles[props.data.meta.theme]}}>
-            {props.data.data}
-        </SyntaxHighlighter>
+        </Box> : <SyntaxHighlighter
+                    onClick={() => {
+                        navigator.clipboard.writeText(props.data.data).then(r => toast({
+                            title: props.title,
+                            description: props.description,
+                            status: props.status,
+                            duration: props.duration,
+                            isClosable: props.closable,
+                        }))
+                    }}
+                    language={props.data.meta.language}
+                    style={{...styles[props.data.meta.theme]}}>
+                    {props.data.data}
+                </SyntaxHighlighter>
     )
 }
 

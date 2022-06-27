@@ -3,9 +3,7 @@ import {
     Tooltip,
     Container,
     Center,
-    useToast,
     Textarea,
-    Box,
     HStack,
     MenuDivider,
     FormLabel,
@@ -21,6 +19,28 @@ import {ChevronDownIcon, TimeIcon} from "@chakra-ui/icons";
 import CodeEditor from '@uiw/react-textarea-code-editor';
 import languages from "./languages.json";
 import ToastBox from "./ToastBox";
+import styles from "./SyntaxTheme";
+
+const DSelect = (props) => {
+    return (
+        <Select variant='filled' isDisabled={!props.state.switch} isRequired placeholder='Language' onChange={(e) => {
+            (props.type === "lang") ? props.setState({
+             language: e.target.value
+            }) : props.setState({
+                theme: e.target.value
+            })
+        }} maxW={150} >
+            {
+                (props.type === "lang") ? languages.map(lang => {
+                    return (<option value={lang}>{lang}</option>)
+                }) : Object.keys(styles).map(theme => {
+                      return (<option value={theme}>{theme}</option>)
+                })
+            }
+
+        </Select>
+    )
+}
 
 const TextContainer = (props) => {
     return (
@@ -42,36 +62,10 @@ const TextContainer = (props) => {
                                                                         onChange={() => props.setState({switch: !props.state.switch})}/>}  </FormLabel>
 
             <HStack spacing={5}>
-              {/*<Select variant='filled' isDisabled={!props.state.switch} colorScheme={"gray.700"} placeholder='default' maxW={150} onChange={(e) => {*/}
-              {/*  props.setState({*/}
-              {/*    theme: e.target.value*/}
-              {/*  })*/}
-              {/*  console.log(props.state.theme)*/}
-              {/*  console.log(e.target.value)*/}
-              {/*}}>*/}
-              {/*  {*/}
-              {/*    Object.keys(styles).map(theme => {*/}
-              {/*    return (<option value={theme}>{theme}</option>)*/}
-              {/*  })}*/}
-              {/*</Select>*/}
-              <Select variant='filled' isDisabled={!props.state.switch} isRequired placeholder='Language' onChange={(e) => {
-                props.setState({
-                  language: e.target.value
-                })
-              }} maxW={150} >
-                {
-                  languages.map(lang => {
-                    return (<option value={lang}>{lang}</option>)
-                  })
-                }
-
-              </Select>
+                <DSelect {props} type={"theme"}/>
+                <DSelect {props} type={"lang"} />
             </HStack>
           </Stack>
-          {/*{props.state.switch ? <SyntaxHighlighter language={props.state.language} style={styles[props.state.theme]}>*/}
-          {/*  {props.state.value}*/}
-          {/*</SyntaxHighlighter>: <></>}*/}
-
             {(!props.state.switch) ? <Textarea
                     mt={3}
                     placeholder="Paste your text here"
@@ -131,7 +125,6 @@ const TextContainer = (props) => {
                             })
                         }
                     }}
-                    // padding={15}
                     style={{
                         fontSize: 14,
                         fontWeight: 400,
@@ -141,32 +134,22 @@ const TextContainer = (props) => {
                         minHeight: "200px",
                     }
                     }
-                    // style={styles[props.state.theme]}
                 />}
-          {/* <Tooltip label="click to submit" placement="bottom"> */}
+
             <Stack marginTop="15px" display='flex'  alignItems='center' direction={{
                 base: "column",
                 sm: "row"
             }}>
             <Menu marginTop="15px" >
               <MenuButton
-                  // maxW={{
-                  //     base: '45%',
-                  //     sm: "100%"
-                  // }}
                   width={[ "100%","40%"]}
                 as={Button}
-                // rightIcon={}
-
                 variant="solid"
                 colorScheme="white"
                 bg="teal.400"
-
                 alighItems={"center"}
-
               >
                   <Center>{<TimeIcon ml={2} mr={2}/>}{(props.state.txt === "Expire in") ? props.state.txt : `Expire in ${props.state.txt}`} {<ChevronDownIcon mr={2}/>}</Center>
-
               </MenuButton>
               <MenuList>
                   <MenuItem onClick={() => props.setState({txt: "15 minutes", expire: 15*60, subFailed: false, error: false})}>15 minutes</MenuItem>
@@ -178,18 +161,20 @@ const TextContainer = (props) => {
                   <MenuItem onClick={() => props.setState({txt: "1 Month", expire: 15*60*60*24*30, subFailed: false, error: false})}>1 month</MenuItem>
               </MenuList>
             </Menu>
-            <Button
-                variant="solid"
-                colorScheme="white"
-                bg="submit.light"
-                width={["100%","60%"]}
-                marginTop="15px"
-                onClick={props.handleSubmit}
-                loadingText={"Coping..."}
-                isLoading={props.state.loading}
-            >
-                Save to CopyTxT
-            </Button>
+                <Tooltip label="click to submit" placement="bottom">
+                    <Button
+                        variant="solid"
+                        colorScheme="white"
+                        bg="submit.light"
+                        width={["100%","60%"]}
+                        marginTop="15px"
+                        onClick={props.handleSubmit}
+                        loadingText={"Coping..."}
+                        isLoading={props.state.loading}
+                    >
+                        Save to CopyTxT
+                    </Button>
+                </Tooltip>
         </Stack>
 
             {(props.state.id !== null) ? <><Tooltip shouldWrapChildren label="click to copy" placement="bottom">
