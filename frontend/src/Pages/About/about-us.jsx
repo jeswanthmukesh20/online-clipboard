@@ -99,8 +99,9 @@ class About extends Component{
                                         Jeswanth Mukesh
                                     </Text>
                                 </Stack>
+                                <Box mt={3} padding={3}>
                                 <Text>I'm a self-taught developer pursuing B.Tech in Artificial Intelligence and Data Science at Vel Tech High Tech Engineering college, Chennai. And currently working as an intern at Facetgr. I’m Interested in Machine Learning and Web Design.
-                                </Text>
+                                </Text></Box>
                                 <Stack direction="row" spacing={2}>
                                     <a href="https://github.com/jeswanthmukesh20" target="_blank">
                                         <Icon as={FaGithub}/>
@@ -132,8 +133,9 @@ class About extends Component{
                                         Ashwin
                                     </Text>
                                 </Stack>
+                                <Box mt={3} padding={3}>
                                 <Text>I'm a 19 year old developer pursuing B.Tech in Artificial Intelligence and Data Science at Vel Tech High Tech Engineering college, Chennai. I’m currently learning Website-Design and Machine Learning.
-                                </Text>
+                                </Text></Box>
                                 <Stack  direction="row" spacing={2}>
                                     <a href="https://github.com/ashwin3005" target="_blank">
                                         <Icon as={FaGithub}/>
@@ -155,4 +157,4 @@ class About extends Component{
     }
 }
 
-export default <About/>;
+export default About;
