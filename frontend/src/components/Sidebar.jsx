@@ -9,7 +9,7 @@ import {
   VStack,
   Icon,
   useColorModeValue,
-  Link,
+  // Link,
   Drawer,
   DrawerContent,
   Text,
@@ -36,6 +36,7 @@ import { PhoneIcon} from '@chakra-ui/icons'
 import {SiXdadevelopers} from 'react-icons/si';
 import { IconType } from 'react-icons';
 import { ReactText } from 'react';
+import { Routes, Route, Link, BrowserRouter as Router } from 'react-router-dom';
 
 interface LinkItemProps {
   name: string;
@@ -43,8 +44,8 @@ interface LinkItemProps {
 }
 const LinkItems: Array<LinkItemProps> = [
   { name: 'Home', icon: FiHome, link: "/" },
-  { name: 'About', icon: SiXdadevelopers, link: "/about" },
-  { name: 'Contact', icon: PhoneIcon,  link: "/contact" },
+  { name: 'About', icon: SiXdadevelopers, link: "/About" },
+  { name: 'Contact', icon: PhoneIcon,  link: "/Contact" },
 //   { name: 'Favourites', icon: FiStar },
 //   { name: 'Settings', icon: FiSettings },
 ];
@@ -119,7 +120,7 @@ interface NavItemProps extends FlexProps {
 }
 const NavItem = ({link, icon, children, ...rest }: NavItemProps) => {
   return (
-    <Link href={link} style={{ textDecoration: 'none' }} _focus={{ boxShadow: 'none' }}>
+    <Link to={link} style={{ textDecoration: 'none' }} _focus={{ boxShadow: 'none' }}>
       <Flex
         align="center"
         p="4"
@@ -210,7 +211,8 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
             </MenuButton>
             <MenuList
               bg={useColorModeValue('white', 'gray.900')}
-              borderColor={useColorModeValue('gray.200', 'gray.700')}>
+              borderColor={useColorModeValue('gray.200', 'gray.700')}
+                >
               <MenuItem>Profile</MenuItem>
               <MenuItem>Settings</MenuItem>
               <MenuItem>Billing</MenuItem>

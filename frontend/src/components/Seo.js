@@ -1,5 +1,5 @@
 import {Helmet} from "react-helmet";
-import favicon from "./favicon.png";
+import favicon from "../Assets/brand/favicon.png";
 
 
 const Seo = () => {
@@ -17,7 +17,7 @@ const Seo = () => {
             <meta name="theme-color" content="#56a6dc"/>
             <meta name="msapplication-TileColor" content="#56a6dc"/>
             <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
-           
+
           </Helmet>
       </>
     )
