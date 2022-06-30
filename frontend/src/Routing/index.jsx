@@ -1,6 +1,6 @@
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import React from "react";
-import {Home, About, Contact} from '../Pages/index'
+import {Home, About, Contact} from '../Pages'
 import Sidebar from '../components/Sidebar'
 
 function Routs() {
