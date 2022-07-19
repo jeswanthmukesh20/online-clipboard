@@ -62,8 +62,8 @@ const TextContainer = (props) => {
                                                                         onChange={() => props.setState({switch: !props.state.switch})}/>}  </FormLabel>
 
             <HStack spacing={5}>
-                <DSelect {props} type={"theme"}/>
-                <DSelect {props} type={"lang"} />
+                <DSelect {...props} type={"theme"}/>
+                <DSelect {...props} type={"lang"} />
             </HStack>
           </Stack>
             {(!props.state.switch) ? <Textarea
