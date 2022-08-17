@@ -43,7 +43,7 @@ function ToastBox(props){
                 color: "black"
             }} variant="filled" isReadOnly resize={"none"} value={props.data.data} />}
 
-        </Box> : <Box
+        </Box> : <SyntaxHighlighter
                     marginTop={props.mt}
                     marginBottom={props.mb}
                     ml={props.ml}
@@ -55,11 +55,6 @@ function ToastBox(props){
                     alignItems="center"
                     width={props.width}
                     fontWeight={props.fontWeight}
-                    style={ (props.isCode) ? {
-                        display:"flex",
-                        alignItems: "center",
-                        justifyContent:"center"
-                    } : {}}
                     onClick={() => {
                         navigator.clipboard.writeText(props.data.data).then(r => toast({
                             title: props.title,
@@ -73,7 +68,7 @@ function ToastBox(props){
                     // style={"dark"}
                     >
                     {props.data.data}
-                </Box>
+                </SyntaxHighlighter>
     )
 }
 
