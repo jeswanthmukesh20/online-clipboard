@@ -20,10 +20,6 @@ import CodeEditor from '@uiw/react-textarea-code-editor';
 import languages from "./languages.json";
 import ToastBox from "./ToastBox";
 import styles from "./SyntaxTheme";
-import CodeMirror from '@uiw/react-codemirror';
-import { javascript } from '@codemirror/lang-javascript';
-import { dracula } from '@uiw/codemirror-theme-dracula';
-
 
 const DSelect = (props) => {
     return (
@@ -62,16 +58,12 @@ const TextContainer = (props) => {
                 sm: "row"
               }} mb="10px"
           >
-            <FormLabel htmlFor="syntax">Syntax Highlighting: {< Switch ml={2} id="syntax" isChecked={props.state.switch}
+            <FormLabel htmlFor="syntax">Syntax Highlighting: {<Switch ml={2} id="syntax" isChecked={props.state.switch}
                                                                         onChange={() => props.setState({switch: !props.state.switch})}/>}  </FormLabel>
 
             <HStack spacing={5}>
-<<<<<<< HEAD
-                {/*<DSelect {props} type={"theme"}/>*/}
-=======
-                <DSelect {...props} type={"theme"}/>
->>>>>>> 31bba0b62ad0a169616df507f8f0ad5713ef7685
-                <DSelect {...props} type={"lang"} />
+                <DSelect {props} type={"theme"}/>
+                <DSelect {props} type={"lang"} />
             </HStack>
           </Stack>
             {(!props.state.switch) ? <Textarea
@@ -82,7 +74,6 @@ const TextContainer = (props) => {
                     errorBorderColor="red.300"
                     isInvalid={props.state.error}
                     size="lg"
-                    value={props.state.value}
                     height="200px"
                     onChange={(e) => {
                         if (e.target.value !== "") {
@@ -106,58 +97,44 @@ const TextContainer = (props) => {
                         }
                     }}
 
-                />: <CodeMirror
-                style={{
-                    marginTop: 20,
-                    borderRadius: 5,
-                    minHeight: "200px"
-                }}
-                value={props.state.value}
-                height="200px"
-                theme={dracula}
-                extensions={[ javascript({ jsx: true })]}
-                onChange={(value, viewUpdate) => {
-                    props.setState({value: value})
-                    // console.log(viewUpdate)
-                }}></CodeMirror>
-                // <CodeEditor
-                //     className="w-tc-editor-var"
-                //     value={props.state.value}
-                //     language={props.state.language}
-                //     padding={15}
-                //     placeholder="Paste your code here."
-                //     onChange={(e) => {
-                //         if (e.target.value !== "") {
-                //             props.setState({
-                //                 value: e.target.value,
-                //                 error: false,
-                //                 subFailed: false
-                //             })
-                //         } else if (e.target.value !== "" && props.state.error === true) {
-                //             props.setState({
-                //                 error: false,
-                //                 value: e.target.value,
-                //                 subFailed: false
-                //             })
-                //         } else {
-                //             props.setState({
-                //                 error: true,
-                //                 value: e.target.value,
-                //                 subFailed: true
-                //             })
-                //         }
-                //     }}
-                //     style={{
-                //         fontSize: 14,
-                //         fontWeight: 400,
-                //         backgroundColor: "rgb(45, 45, 45)",
-                //         fontFamily: 'ui-monospace,SFMono-Regular,SF Mono,Consolas,Liberation Mono,Menlo,monospace',
-                //         borderRadius: "5px",
-                //         minHeight: "200px",
-                //     }
-                //     }
-                // />
-                }
+                />:
+                <CodeEditor
+                    className="w-tc-editor-var"
+                    value={props.state.value}
+                    language={props.state.language}
+                    padding={15}
+                    placeholder="Paste your code here."
+                    onChange={(e) => {
+                        if (e.target.value !== "") {
+                            props.setState({
+                                value: e.target.value,
+                                error: false,
+                                subFailed: false
+                            })
+                        } else if (e.target.value !== "" && props.state.error === true) {
+                            props.setState({
+                                error: false,
+                                value: e.target.value,
+                                subFailed: false
+                            })
+                        } else {
+                            props.setState({
+                                error: true,
+                                value: e.target.value,
+                                subFailed: true
+                            })
+                        }
+                    }}
+                    style={{
+                        fontSize: 14,
+                        fontWeight: 400,
+                        backgroundColor: "rgb(45, 45, 45)",
+                        fontFamily: 'ui-monospace,SFMono-Regular,SF Mono,Consolas,Liberation Mono,Menlo,monospace',
+                        borderRadius: "5px",
+                        minHeight: "200px",
+                    }
+                    }
+                />}
 
             <Stack marginTop="15px" display='flex'  alignItems='center' direction={{
                 base: "column",

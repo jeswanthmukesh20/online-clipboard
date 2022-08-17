@@ -66,11 +66,7 @@ const TextContainer = (props) => {
                                                                         onChange={() => props.setState({switch: !props.state.switch})}/>}  </FormLabel>
 
             <HStack spacing={5}>
-<<<<<<< HEAD
                 {/*<DSelect {props} type={"theme"}/>*/}
-=======
-                <DSelect {...props} type={"theme"}/>
->>>>>>> 31bba0b62ad0a169616df507f8f0ad5713ef7685
                 <DSelect {...props} type={"lang"} />
             </HStack>
           </Stack>
