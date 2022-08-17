@@ -196,7 +196,7 @@ const TextContainer = (props) => {
                 </Tooltip>
         </Stack>
 
-            {(props.state.id !== null) ? <><Tooltip shouldWrapChildren label="click to copy" placement="bottom">
+            {(props.state.id !== null && props.state.id != 0) ? <><Tooltip shouldWrapChildren label="click to copy" placement="bottom">
             Your Retrive ID: <ToastBox
             data={props.state.id}
             title='Copied to Clipboard.'

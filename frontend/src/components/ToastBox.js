@@ -54,7 +54,8 @@ function ToastBox(props){
                         }))
                     }}
                     language={props.data.meta.language}
-                    style={{...styles[props.data.meta.theme]}}>
+                    // style={"dark"}
+                    >
                     {props.data.data}
                 </SyntaxHighlighter>
     )

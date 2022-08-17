@@ -8,15 +8,8 @@ function Routs() {
         <div>
             <Router>
                 <Routes>
-                    <Route path="/" element={<Sidebar children={<Home/>}/>}/>
-                </Routes>
-                <Routes>
                     <Route path="/about" element={<Sidebar children={<About/>}/>}/>
-                </Routes>
-                <Routes>
                     <Route path="/contact" element={<Sidebar children={<Contact/>}/>}/>
-                </Routes>
-                <Routes>
                     <Route path="*" element={<Sidebar children={<Home/>}/>}/>
                 </Routes>
             </Router>
