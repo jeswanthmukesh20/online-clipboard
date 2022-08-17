@@ -7,7 +7,6 @@ import Breakpoints from '../../components/Breakpoints'
 import  {
     useLocation
 } from "react-router-dom";
-import Sidebar from '../../components/Sidebar';
 
 
 
@@ -71,13 +70,21 @@ class Home extends Component {
             })
         }
     }
+    retrive = () => {
+        console.log(this.state)
+        // this.handleSearch({key:"Enter"})
+        this.setState({
+            path: false,
+            id: Number(this.props.path.pathname.split("/")[1])
+        })
+        console.log(this.state.resp)
+
+
+    }
     componentDidMount() {
         (this.props.path.pathname) ? (isNaN(Number(this.props.path.pathname.split("/")[1]))) ? this.setState({
             path: false
-        }): this.setState({
-            path: false,
-            id: Number(this.props.path.pathname.split("/")[1])
-        }) : this.setState({
+        }): this.retrive() : this.setState({
             path: false
         })
     }
