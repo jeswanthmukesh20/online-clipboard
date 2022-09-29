@@ -188,7 +188,7 @@ const TextContainer = (props) => {
                         width={["100%","60%"]}
                         marginTop="15px"
                         onClick={props.handleSubmit}
-                        loadingText={"Coping..."}
+                        loadingText={"Copying..."}
                         isLoading={props.state.loading}
                     >
                         Save to CopyTxT

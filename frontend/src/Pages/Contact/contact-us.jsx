@@ -1,5 +1,4 @@
 import Seo from "../../components/Seo";
-import Sidebar from "../../components/Sidebar";
 import React from "react";
 
 const Contact = () => {
