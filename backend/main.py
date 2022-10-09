@@ -2,14 +2,14 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 import random
 from motor.motor_asyncio import AsyncIOMotorClient
-
+import os
 
 app = FastAPI()
 origins = [
     "*"
 ]
 
-PASSWORD = "online-clipboard"
+PASSWORD = os.getenv("PASSWORD", None)
 cluster = AsyncIOMotorClient(f"mongodb+srv://killshot:{PASSWORD}@cluster0.hgrij.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
 db = cluster["clipboard"]
 retrive_id = db["retrive_id"]
