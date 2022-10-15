@@ -47,20 +47,26 @@ const theme = extendTheme({styles: {
         }),
     }, config, colors})
 
-const GA = () => {
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+// const GA = () => {
+//     window.dataLayer = window.dataLayer || [];
+//     function gtag(){dataLayer.push(arguments);}
+//     gtag('js', new Date());
 
-    gtag('config', 'G-VGQ9489MDH');
-}
+//     gtag('config', 'G-VGQ9489MDH');
+// }
 const App = (props) => {
+    window.dataLayer = window.dataLayer || [];
+    const gtag = () => {
+        dataLayer.push(arguments)
+    }
+    gtag('js', new Date())
+    gtag('config', "G-VGQ9489MDH")
     useEffect(() => {
         ReactGA.pageview(window.location.pathname);
     }, [])
     return (
         <ChakraProvider initialColorMode={config.initialColorMode} theme={theme}>
-            
+            {/* <GA/> */}
             
             <Routs/>
         </ChakraProvider>
