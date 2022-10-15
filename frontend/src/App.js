@@ -1,7 +1,10 @@
 import {ChakraProvider, extendTheme} from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect } from "react";
 import Routs from './Routing'
+import ReactGA from 'react-ga';
 
+const TRACKING_ID = "G-F5WG7KKNJM";
+ReactGA.initialize(TRACKING_ID);
 const dark = "#171923"
 const colors = {
     primary: {
@@ -43,9 +46,22 @@ const theme = extendTheme({styles: {
             },
         }),
     }, config, colors})
+
+const GA = () => {
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-VGQ9489MDH');
+}
 const App = (props) => {
+    useEffect(() => {
+        ReactGA.pageview(window.location.pathname);
+    }, [])
     return (
         <ChakraProvider initialColorMode={config.initialColorMode} theme={theme}>
+            
+            
             <Routs/>
         </ChakraProvider>
     )
