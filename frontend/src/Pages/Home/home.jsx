@@ -117,6 +117,9 @@ class Home extends Component {
                 })
             }).catch((error) => {
                 console.log(error);
+            }).finally(()=>{
+         
+                this.setState({  value: "",txt: "", expire:"", subFailed: true, error: false})
             })
         }else{
             this.setState({
