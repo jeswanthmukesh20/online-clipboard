@@ -4,10 +4,11 @@ import {
     SkeletonText,
     InputRightElement,
     InputGroup,
-    Input
+    Input,
+    Button
 } from '@chakra-ui/react';
 import ToastBox from './ToastBox'
-import { Search2Icon} from "@chakra-ui/icons";
+import { Search2Icon, ArrowForwardIcon} from "@chakra-ui/icons";
 
 const RetriveContainer =  (props) => {
     return (
@@ -21,14 +22,22 @@ const RetriveContainer =  (props) => {
                 padding: "20px",
               }}
         >
-          <InputGroup size="lg">
-            <InputRightElement
-                pointerEvents='none'
-                children={<Search2Icon color='gray.300' />}/>
+          <InputGroup alignContent="space-between" size="lg">
+            
             <Input
                 placeholder="Enter your retrive ID..."
                 onKeyPress={props.handleSearch}
+                padding={3}
             />
+            <Button
+              variant="solid"
+              colorScheme="white"
+              bg="submit.light"
+              onClick={props.handleSearch}
+              isLoading={props.state.loading}
+            ><InputRightElement
+                pointerEvents='none'
+                children={<ArrowForwardIcon  />}/></Button>
           </InputGroup>
               {(props.state.started) ? <SkeletonText mt='4' noOfLines={4} spacing='4' />: (props.state.resp !== null) ? <>
                 <Tooltip label="click to copy" shouldWrapChildren placement="auto">
