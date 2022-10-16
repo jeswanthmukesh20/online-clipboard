@@ -3,8 +3,8 @@ import React, { useEffect } from "react";
 import Routs from './Routing'
 import ReactGA from 'react-ga';
 
-const TRACKING_ID = "G-F5WG7KKNJM";
-ReactGA.initialize(TRACKING_ID);
+// const TRACKING_ID = "G-F5WG7KKNJM";
+// ReactGA.initialize(TRACKING_ID);
 const dark = "#171923"
 const colors = {
     primary: {
