@@ -1,4 +1,4 @@
-import React,{Component} from "react";
+import React, { Component } from "react";
 import Seo from '../../components/Seo'
 import breakpoints from "../../components/Breakpoints";
 import {
@@ -9,7 +9,8 @@ import {
     Avatar,
     Stack,
     Icon,
-    SimpleGrid
+    SimpleGrid,
+    Button
 } from "@chakra-ui/react";
 import { motion } from 'framer-motion';
 import {
@@ -56,7 +57,7 @@ const content = [
 
 const UserCard = (props) => {
     return (
-        <Box as={motion.div} whileHover={{ scale: 1.03,boxShadow: "5px 5px 0 rgba(0, 0, 0, 0.2)" }} maxW="lg"  borderWidth='1px' borderRadius='lg' overflow='hidden' padding="10px">
+        <Box as={motion.div} whileHover={{ scale: 1.03, boxShadow: "5px 5px 0 rgba(0, 0, 0, 0.2)" }} maxW="lg" borderWidth='1px' borderRadius='lg' overflow='hidden' padding="10px">
             <Stack
                 direction='row'
 
@@ -75,29 +76,29 @@ const UserCard = (props) => {
                 </Text>
             </Stack>
             <Box mt={3} padding={3}>
-            <Text>
-                {props.content}
-            </Text></Box>
-            <Stack  direction="row" spacing={2}>
+                <Text>
+                    {props.content}
+                </Text></Box>
+            <Stack direction="row" spacing={2}>
                 <a href={props.github} target="_blank">
-                    <Icon as={FaGithub}/>
+                    <Icon as={FaGithub} />
                 </a>
                 <a href={props.linkedin} target="_blank">
-                    <Icon color="#0077b5" as={FaLinkedinIn}/>
+                    <Icon color="#0077b5" as={FaLinkedinIn} />
                 </a>
                 <a href={props.twitter} target="_blank">
-                    <Icon color="#00acee" as={FaTwitter}/>
+                    <Icon color="#00acee" as={FaTwitter} />
                 </a>
             </Stack>
         </Box>
     )
 }
 
-class About extends Component{
-    render(){
-        return(
+class About extends Component {
+    render() {
+        return (
             <div>
-                <Seo/>
+                <Seo />
                 <Container
                     // margin="20px"
                     marginTop={70}
@@ -116,11 +117,19 @@ class About extends Component{
                 >
                     <Heading
                         marginBottom="25px"
-                    >About CopyTxT</Heading>
+                    >
+                        About CopyTxT
+                    </Heading>
                     <Box>
                         <Text padding="5px">
                             CopyTxT is a free online clipboard that makes sharing text or code snippets between devices easy and anonymous. The content posted on the clipboard is stored in the cloud. It can be retrieved using a 4-digit unique retrieve ID provided.
                         </Text>
+                        <br></br>
+                        <Text
+                        padding="5px" fontSize="xl" as='b' >Check our other services </Text>
+                        <br></br>
+                        <Button ml='50px' mt='10px' colorScheme='blue' variant='outline' as='a' href='https://create-your-password.netlify.app' target='_blank'>Password Generator</Button>
+                        <Button ml='50px' mt='10px' colorScheme='blue' variant='outline' as='a' href='https://qr-code-jeswanth.netlify.app' target='_blank'>QR-code Generator</Button>
                     </Box>
                 </Container>
                 <Container
@@ -142,15 +151,15 @@ class About extends Component{
                 >
 
                     <Box margin="15px">
-                        <Heading marginTop="10px" marginBottom="25px" children="<Developers />"/>
+                        <Heading marginTop="10px" marginBottom="25px" children="<Developers />" />
 
                         {/* User */}
                         <SimpleGrid columns={[1, null, 2]} spacing={4}>
                             {content.map(user => {
-                                return <UserCard {...user}/>
+                                return <UserCard {...user} />
                             })}
 
-                            
+
                         </SimpleGrid>
 
                     </Box>
