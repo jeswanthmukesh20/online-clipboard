@@ -55,18 +55,8 @@ const theme = extendTheme({styles: {
 //     gtag('config', 'G-VGQ9489MDH');
 // }
 const App = (props) => {
-    window.dataLayer = window.dataLayer || [];
-    const gtag = () => {
-        dataLayer.push(arguments)
-    }
-    gtag('js', new Date())
-    gtag('config', "G-VGQ9489MDH")
-    useEffect(() => {
-        ReactGA.pageview(window.location.pathname);
-    }, [])
     return (
         <ChakraProvider initialColorMode={config.initialColorMode} theme={theme}>
-            {/* <GA/> */}
             
             <Routs/>
         </ChakraProvider>
