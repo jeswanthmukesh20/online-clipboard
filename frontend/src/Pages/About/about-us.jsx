@@ -48,8 +48,8 @@ const content = [
     {
         name: "Subash Rao",
         src: Avatar3,
-        content: "I'm a 19 year old developer pursuing B.Tech in Artificial Intelligence and Data Science at Vel Tech High Tech Engineering college, Chennai. I’m currently learning Website-Design and Machine Learning.",
-        github: "https://github.com/",
+        content: "I'm a 19 year old developer pursuing B.Tech in Artificial Intelligence and Data Science at Vel Tech High Tech Engineering college, Chennai. I’m currently learning Machine Learning , Data science",
+        github: "https://github.com/Subash_Rao",
         linkedin: "https://www.linkedin.com/in/",
         twitter: "https://twitter.com/"
     }
