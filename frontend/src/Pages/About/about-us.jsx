@@ -129,7 +129,7 @@ class About extends Component {
                         padding="5px" fontSize="xl" as='b' >Check our other services </Text>
                         <br></br>
                         <Button ml='50px' mt='10px' colorScheme='blue' variant='outline' as='a' href='https://create-your-password.netlify.app' target='_blank'>Password Generator</Button>
-                        <Button ml='50px' mt='10px' colorScheme='blue' variant='outline' as='a' href='https://qr-code-jeswanth.netlify.app' target='_blank'>QR-code Generator</Button>
+                        <Button ml='50px' mt='10px' colorScheme='blue' variant='outline' as='a' href='https://copytxt-qr-code.netlify.app' target='_blank'>QR-code Generator</Button>
                     </Box>
                 </Container>
                 <Container
