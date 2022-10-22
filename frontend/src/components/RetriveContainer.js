@@ -28,12 +28,13 @@ const RetriveContainer =  (props) => {
                 placeholder="Enter your retrive ID..."
                 onKeyPress={props.handleSearch}
                 padding={3}
+                onChange={(e) => {props.handleChange(e)}}
             />
             <Button
               variant="solid"
               colorScheme="white"
               bg="submit.light"
-              onClick={props.handleSearch}
+              onClick={props.retriveSubmit}
               isLoading={props.state.loading}
             ><InputRightElement
                 pointerEvents='none'

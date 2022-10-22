@@ -29,13 +29,46 @@ class Home extends Component {
             isOpen: false,
             txt: "Expire in",
             expire: 0,
-            path: false
+            path: false,
+            retrive_id: 0
 
         }
         this.update = this.update.bind(this)
     }
     update = (setstate) => {
         this.setState(setstate)
+    }
+    retriveSubmit = () => {
+        console.log("submited")
+        this.setState({
+            started: true
+        })
+        console.log(this.state.retrive_id)
+        axios.post("https://copytxt-online.herokuapp.com/retrive", {
+            retrive_id: this.state.retrive_id
+        },{
+            "accept": "application/json",
+            "Content-type": "application/json"
+        }).then(res => {
+            console.log(this.state.resp, 'response')
+            if(res.data.msg === "success"){
+                this.setState({
+                    resp: res.data,
+                    started: false
+                })
+                console.log('success')
+
+            }else{
+                this.setState({
+                    resp: null,
+                    started: false
+                })
+            }
+
+        }).catch(error => {
+            console.log(error, "error")
+            this.setState({started: false, resp: null})
+        })
     }
     handleSearch = (e) => {
         if(e.key === 'Enter'){
@@ -92,7 +125,12 @@ class Home extends Component {
     // componentDidUpdate(prevProps: Readonly<P>, prevState: Readonly<S>, snapshot: SS) {
     //     console.log(this.state.path)
     // }
-
+    handleChange = (e) => {
+        console.log(this.state.retrive_id)
+        this.setState({
+            retrive_id: e.target.value
+        })
+    }
     handleSubmit = (e) => {
         if(this.state.value !== "" && this.state.value != null && this.state.subFailed === false && this.state.expire !== 0){
             this.setState({loading: true})
@@ -117,9 +155,6 @@ class Home extends Component {
                 })
             }).catch((error) => {
                 console.log(error);
-            }).finally(()=>{
-         
-                this.setState({  value: "",txt: "", expire:"", subFailed: true, error: false})
             })
         }else{
             this.setState({
@@ -142,11 +177,17 @@ class Home extends Component {
                 /> <RetriveContainer
                     breakpoints={Breakpoints}
                     state={this.state}
+                    setState={this.setState}
                     handleSearch={this.handleSearch}
+                    retriveSubmit={this.retriveSubmit}
+                    handleChange={this.handleChange}
                 /> </>: <RetriveContainer
                     breakpoints={Breakpoints}
                     state={this.state}
+                    setState={this.setState}
                     handleSearch={this.handleSearch}
+                    retriveSubmit={this.retriveSubmit}
+                    handleChange={this.handleChange}
                 />}
             </div>
         );
