@@ -28,6 +28,7 @@ const RetriveContainer =  (props) => {
                 placeholder="Enter your retrive ID..."
                 onKeyPress={props.handleSearch}
                 padding={3}
+                value={props.value}
                 onChange={(e) => {props.handleChange(e)}}
             />
             <Button

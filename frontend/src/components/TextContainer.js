@@ -197,8 +197,10 @@ const TextContainer = (props) => {
         </Stack>
 
             {(props.state.id !== null && props.state.id != 0) ? <><Tooltip shouldWrapChildren label="click to copy" placement="bottom">
-            Your Retrive ID: <ToastBox
+
+            <div>Your Retrive ID: <ToastBox
             data={props.state.id}
+            url={`https://copytxt.online/${props.state.id}`}
             title='Copied to Clipboard.'
             description="Retrive ID copied to Clipboard."
             status='success'
@@ -206,8 +208,24 @@ const TextContainer = (props) => {
             closable={true}
             textarea={false}
             mt="10px"
+            color={"black"}
             fontWeight='semibold'
-         /> </Tooltip>
+            mr={"30px"}
+         /></div>
+        <div style={{
+            marginTop: "10px"
+        }}>Get your data at: <ToastBox
+                data={`https://copytxt.online/${props.state.id}`}
+                title='Copied to Clipboard.'
+                description="Url copied to Clipboard."
+                status='success'
+                duration={1500}
+                closable={true}
+                color={"blue"}
+                textarea={false}
+                mt=""
+        /></div>
+            </Tooltip>
          </>: <div></div>}
         </Container>
     )

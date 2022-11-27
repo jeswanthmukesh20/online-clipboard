@@ -6,7 +6,7 @@ import styles from "./SyntaxTheme";
 function ToastBox(props){
     const toast = useToast()
 
-
+    const color = props.color;
     return (
         (!props.isCode) ? <Box
             marginTop={props.mt}
@@ -17,6 +17,8 @@ function ToastBox(props){
             paddingTop={props.pt}
             paddingLeft={props.pl}
             as="button"
+            mr={props.mr}
+            color={color}
             alignItems="center"
             width={props.width}
             fontWeight={props.fontWeight}

@@ -104,19 +104,47 @@ class Home extends Component {
         }
     }
     retrive = () => {
-        console.log(this.state)
-        // this.handleSearch({key:"Enter"})
         this.setState({
-            path: false,
-            id: Number(this.props.path.pathname.split("/")[1])
+            path: true,
+            // id: Number(this.props.path.pathname.split("/")[1]),
+            retrive_id: Number(this.props.path.pathname.split("/")[1]),
+            started: true
         })
-        console.log(this.state.resp)
+        console.log(this.state)
+        console.log(Number(this.props.path.pathname.split("/")[1]));
+        axios.post("https://copytxt-online.herokuapp.com/retrive", {
+            retrive_id: Number(this.props.path.pathname.split("/")[1])
+        },{
+            "accept": "application/json",
+            "Content-type": "application/json"
+        }).then(res => {
+            console.log(this.state.resp, 'response')
+            if(res.data.msg === "success"){
+                this.setState({
+                    resp: res.data,
+                    started: false
+                })
+                console.log('success')
+
+            }else{
+                this.setState({
+                    resp: null,
+                    started: false
+                })
+            }
+
+        }).catch(error => {
+            console.log(error, "error")
+            this.setState({started: false, resp: null})
+        })
 
 
     }
     componentDidMount() {
-        (this.props.path.pathname) ? (isNaN(Number(this.props.path.pathname.split("/")[1]))) ? this.setState({
-            path: false
+        console.log("path name: ");
+        console.log(this.props.path.pathname);
+        (this.props.path.pathname !== "/") ? (isNaN(Number(this.props.path.pathname.split("/")[1]))) ? this.setState({
+            path: true
         }): this.retrive() : this.setState({
             path: false
         })
@@ -184,6 +212,7 @@ class Home extends Component {
                 /> </>: <RetriveContainer
                     breakpoints={Breakpoints}
                     state={this.state}
+                    value={this.state.retrive_id}
                     setState={this.setState}
                     handleSearch={this.handleSearch}
                     retriveSubmit={this.retriveSubmit}
