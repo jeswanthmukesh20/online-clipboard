@@ -1,0 +1,44 @@
+version: '3.7'
+
+services:
+  nginx:
+    build: ./nginx
+    container_name: nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    # network_mode: host
+    restart: "on-failure"
+    networks:
+      - backend
+
+  mongo:
+    image: mongo:latest
+    container_name: mongo
+    restart: unless-stopped
+    command: mongod --auth
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: CopyTxT
+      MONGO_INITDB_ROOT_PASSWORD: S5tIvctcqDM9XYZX
+      MONGO_INITDB_DATABASE: clipboard
+    ports:
+      - 27017:27017
+    networks:
+      - backend
+
+    
+  backend:
+    build: .
+    container_name: backend
+    environment:
+      USERNAME: CopyTxT
+      PASSWORD: S5tIvctcqDM9XYZX
+    ports:  
+      - 5000:5000
+    restart: "on-failure"
+    networks:
+      - backend
+
+networks:
+  backend:
+    driver: bridge

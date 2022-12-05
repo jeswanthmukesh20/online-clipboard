@@ -45,7 +45,7 @@ class Home extends Component {
             started: true
         })
         console.log(this.state.retrive_id)
-        axios.post("https://copytxt.deta.dev/retrive", {
+        axios.post("https://api.copytxt.online/retrive", {
             retrive_id: this.state.retrive_id
         },{
             "accept": "application/json",
@@ -77,7 +77,7 @@ class Home extends Component {
                 started: true
             })
             // https://onclip.herokuapp.com/retrive
-            axios.post("https://copytxt.deta.dev/retrive", {
+            axios.post("https://api.copytxt.online/retrive", {
                 retrive_id: e.target.value
             },{
                 "accept": "application/json",
@@ -113,7 +113,7 @@ class Home extends Component {
         })
         console.log(this.state)
         console.log(Number(this.props.path.pathname.split("/")[1]));
-        axios.post("https://copytxt.deta.dev/retrive", {
+        axios.post("https://api.copytxt.online/retrive", {
             retrive_id: Number(this.props.path.pathname.split("/")[1])
         },{
             "accept": "application/json",
@@ -172,7 +172,7 @@ class Home extends Component {
                 }
             }
             console.log(data)
-            axios.post("https://copytxt.deta.dev/paste", data,
+            axios.post("https://api.copytxt.online/paste", data,
                 {
                     "accept": "application/json",
                     "Content-type": "application/json"

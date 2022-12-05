@@ -9,9 +9,10 @@ origins = [
     "*"
 ]
 
-USERNAME = os.getenv("USERNAME", None)
-PASSWORD = os.getenv("PASSWORD", None)
-cluster = AsyncIOMotorClient(f"mongodb+srv://{USERNAME}:{PASSWORD}@cluster0.z1daado.mongodb.net/?retryWrites=true&w=majority")
+USERNAME = os.getenv("USERNAME", "CopyTxT")
+PASSWORD = os.getenv("PASSWORD", "S5tIvctcqDM9XYZX")
+CLIENT = f"mongodb://{USERNAME}:{PASSWORD}@mongo/clipboard"
+cluster = AsyncIOMotorClient(CLIENT)
 db = cluster["clipboard"]
 retrive_id = db["retrive_id"]
 clipboard = db["clipboard"]
