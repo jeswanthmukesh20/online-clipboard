@@ -197,7 +197,7 @@ class Home extends Component {
         return (
             <div className="App">
                 <Seo/>
-                {(!this.state.path) ? <> <TextContainer
+                {(!this.state.path) ? <><h1>This site is currently under maintenance</h1><br/><h3>Sorry for the inconvenience..</h3> <TextContainer
                     setState={this.update}
                     breakpoints={Breakpoints}
                     state={this.state}
