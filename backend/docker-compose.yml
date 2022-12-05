@@ -13,7 +13,7 @@ services:
       - backend
 
   mongo:
-    image: mongo:latest
+    build: ./mongodb
     container_name: mongo
     restart: unless-stopped
     command: mongod --auth
