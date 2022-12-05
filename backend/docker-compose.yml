@@ -18,11 +18,14 @@ services:
     restart: unless-stopped
     command: mongod --auth
     environment:
-      MONGO_INITDB_ROOT_USERNAME: CopyTxT
-      MONGO_INITDB_ROOT_PASSWORD: S5tIvctcqDM9XYZX
-      MONGO_INITDB_DATABASE: clipboard
+        MONGO_INITDB_ROOT_USERNAME: CopyTxT
+        MONGO_INITDB_ROOT_PASSWORD: S5tIvctcqDM9XYZX
+        MONGO_INITDB_DATABASE: clipboard
     ports:
-      - 27017:27017
+        - 27017:27017
+    volumes:
+        - ./mongodb/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+
     networks:
       - backend
 
