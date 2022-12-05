@@ -4,6 +4,7 @@ import Seo from '../../components/Seo'
 import RetriveContainer from '../../components/RetriveContainer'
 import TextContainer from '../../components/TextContainer'
 import Breakpoints from '../../components/Breakpoints'
+import { Heading } from '@chakra-ui/react'
 import  {
     useLocation
 } from "react-router-dom";
@@ -197,7 +198,7 @@ class Home extends Component {
         return (
             <div className="App">
                 <Seo/>
-                {(!this.state.path) ? <><h1>This site is currently under maintenance</h1><br/><h3>Sorry for the inconvenience..</h3> <TextContainer
+                {(!this.state.path) ? <><Heading>This site is currently under maintenance</Heading><br/><Heading>Sorry for the inconvenience..</Heading> <TextContainer
                     setState={this.update}
                     breakpoints={Breakpoints}
                     state={this.state}
