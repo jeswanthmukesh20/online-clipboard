@@ -43,7 +43,7 @@ function ToastBox(props){
         >
             {(!props.textarea) ? props.data : <Textarea style={{
                 color: "black"
-            }} variant="filled" isReadOnly resize={"none"} value={props.data.data} />}
+            }} variant="filled" isReadOnly resize={"none"} value={props.data.data} height="300px" />}
 
         </Box> : <SyntaxHighlighter
                     marginTop={props.mt}
