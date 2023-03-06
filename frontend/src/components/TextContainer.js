@@ -3,6 +3,7 @@ import {
     Tooltip,
     Container,
     Center,
+    Text,
     Textarea,
     HStack,
     MenuDivider,
@@ -48,6 +49,8 @@ const DSelect = (props) => {
 
 const TextContainer = (props) => {
     return (
+        <>
+        <Center><Text as='b' fontSize='5xl'>Site is under Maintenance. Sorry for the inconvinence</Text></Center>
         <Container
           maxW={props.breakpoints.TextContainer}
           maxH={props.breakpoints.TextContainer}
@@ -227,7 +230,9 @@ const TextContainer = (props) => {
         /></div>
             </Tooltip>
          </>: <div></div>}
+
         </Container>
+        </>
     )
 }
 
